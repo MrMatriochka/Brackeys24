@@ -1,0 +1,74 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Combat",
+            "id": "beb1f1d1-9e08-4927-a68c-5faa18f60b81",
+            "actions": [
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "d400f06f-49b9-4ea9-817c-2e4ffa372e64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "af2a8896-ba62-491e-ba20-334785275d73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "MultiTap(tapDelay=0.25)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "04504d79-ef86-4ff6-9325-86684eaf9a46",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bb4f6746-4514-4ce0-8df4-1cf36d99f90c",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f10d7e7-fa87-4563-9805-968121c2f449",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e469abf6-500f-4615-b238-e7def8583936",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
