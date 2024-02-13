@@ -12,6 +12,7 @@ public class DuelManager : MonoBehaviour
         HeavyAttack,
         Pause,
     }
+    [SerializeField] GameObject doorScene;
 
     [SerializeField] EnnemyMoves[] sequence;
     [SerializeField] float timeBetweenMoves;
@@ -19,6 +20,8 @@ public class DuelManager : MonoBehaviour
     [SerializeField] float flashTime;
     [SerializeField] GameObject whiteFlash;
     [SerializeField] GameObject redFlash;
+    [SerializeField] GameObject ennemyKatana;
+    [SerializeField] GameObject ennemyKatana_attack;
 
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
@@ -32,7 +35,8 @@ public class DuelManager : MonoBehaviour
     EnnemyMoves currentState;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        doorScene.SetActive(false);
+       audioSource = GetComponent<AudioSource>();
         StartCoroutine(EnnemySequence());
         canAttack = false;
     }
@@ -50,6 +54,7 @@ public class DuelManager : MonoBehaviour
         foreach (EnnemyMoves move in sequence)
         {
             audioSource.PlayOneShot(tick);
+            yield return new WaitForSeconds(timeBetweenMoves / 2);
             switch (move)
             {
                 case EnnemyMoves.Pause:
@@ -66,7 +71,7 @@ public class DuelManager : MonoBehaviour
                 default:
                     break;
             }
-            yield return new WaitForSeconds(timeBetweenMoves);
+            yield return new WaitForSeconds(timeBetweenMoves/2);
         }
         audioSource.PlayOneShot(carillon);
         playingSequence = false;
@@ -78,7 +83,7 @@ public class DuelManager : MonoBehaviour
     {
         for (int i = 0; i < num; i++)
         {
-            flash.SetActive(true);
+            flash.SetActive(flash);
             yield return new WaitForSeconds(flashTime);
             flash.SetActive(false);
             yield return new WaitForSeconds(flashTime);
@@ -91,6 +96,7 @@ public class DuelManager : MonoBehaviour
         foreach (EnnemyMoves move in sequence)
         {
             audioSource.PlayOneShot(tick);
+            yield return new WaitForSeconds(timeBetweenMoves / 2);
             if (dodgingCD <= 0)
             {
                 dodging = false;
@@ -103,20 +109,23 @@ public class DuelManager : MonoBehaviour
                     break;
                 case EnnemyMoves.LightAttack:
                     currentState = EnnemyMoves.LightAttack;
+                    StartCoroutine(EnemyKatanaStance(1));
                     enemyAttack = true;
                     break;
                 case EnnemyMoves.DoubleLightAttack:
                     currentState = EnnemyMoves.DoubleLightAttack;
+                    StartCoroutine(EnemyKatanaStance(2));
                     enemyAttack = true;
                     break;
                 case EnnemyMoves.HeavyAttack:
                     currentState = EnnemyMoves.HeavyAttack;
+                    StartCoroutine(EnemyKatanaStance(1));
                     enemyAttack = true;
                     break;
                 default:
                     break;
             }
-            yield return new WaitForSeconds(timeBetweenMoves);
+            yield return new WaitForSeconds(timeBetweenMoves/2);
             if (enemyAttack)
             {
                 print("hurt");
@@ -125,6 +134,20 @@ public class DuelManager : MonoBehaviour
             {
                 dodgingCD--; 
             }
+        }
+        yield return null;
+    }
+
+    IEnumerator EnemyKatanaStance(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            ennemyKatana.SetActive(false);
+            ennemyKatana_attack.SetActive(true);
+            yield return new WaitForSeconds(flashTime);
+            ennemyKatana.SetActive(true);
+            ennemyKatana_attack.SetActive(false);
+            yield return new WaitForSeconds(flashTime);
         }
         yield return null;
     }
