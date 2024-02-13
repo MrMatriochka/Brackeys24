@@ -18,7 +18,8 @@ public class DuelManager : MonoBehaviour
         Pause,
         LightAttack,
         HeavyAttack,
-        ResetAction
+        ResetAction,
+        Open
     }
     [SerializeField] GameObject doorScene;
     [SerializeField] EnnemiesStats ennemyStats;
@@ -27,7 +28,6 @@ public class DuelManager : MonoBehaviour
     [Header("Move Sequence")]
     [SerializeField] EnnemyAction[] sequence;
     [SerializeField] float blockWindow;
-    bool playingSequence;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip carillon;
@@ -44,9 +44,9 @@ public class DuelManager : MonoBehaviour
     [SerializeField] ParticleSystem blood;
     [SerializeField] ParticleSystem sparks;
 
-    bool canAttack;
     bool canBlock;
     int enemyAttack;
+    int ennemyHealth;
     bool actionPerformed;
     bool dodging;
     int dodgingCD;
@@ -60,36 +60,26 @@ public class DuelManager : MonoBehaviour
     [SerializeField] float dodgeDistance;
 
     [Header("UI")]
-    [SerializeField] TMP_Text playerHealth;
-    [SerializeField] TMP_Text ennemyHealth;
+    [SerializeField] TMP_Text playerHealthUI;
+    [SerializeField] TMP_Text ennemyHealthUI;
     void Start()
     {
         doorScene.SetActive(false);
        audioSource = GetComponent<AudioSource>();
         StartCoroutine(EnnemySequence());
-        canAttack = false;
         playerInitialPos = player.transform.position;
-
-        UpdateUI(playerHealth, playerStats.health.ToString());
-        UpdateUI(ennemyHealth, ennemyStats.health.ToString());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
+        ennemyHealth = ennemyStats.health;
+        UpdateUI(playerHealthUI, playerStats.health.ToString());
+        UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
     }
 
     IEnumerator EnnemySequence()
     {
-        playingSequence = true;
-        canAttack = false;
-        foreach (EnnemyAction action in sequence)
+        for (int i = 0; i < sequence.Length-1; i++)
         {
             audioSource.PlayOneShot(tick);
-            yield return new WaitForSeconds(action.timing / 2);
-            switch (action.move)
+            yield return new WaitForSeconds(sequence[i].timing / 2);
+            switch (sequence[i].move)
             {
                 case EnnemyMoves.Pause:
                     break;
@@ -102,10 +92,9 @@ public class DuelManager : MonoBehaviour
                 default:
                     break;
             }
-            yield return new WaitForSeconds(action.timing / 2);
+            yield return new WaitForSeconds(sequence[i].timing / 2);
         }
         audioSource.PlayOneShot(carillon);
-        playingSequence = false;
         StartCoroutine(PlayerSequence());
         yield return null;
     }
@@ -161,6 +150,7 @@ public class DuelManager : MonoBehaviour
 
             yield return new WaitForSeconds(action.timing / 2);
         }
+
         yield return null;
     }
 
@@ -174,7 +164,7 @@ public class DuelManager : MonoBehaviour
         if (enemyAttack > 0)
         {
             playerStats.health -= enemyAttack * ennemyStats.damage;
-            UpdateUI(playerHealth, playerStats.health.ToString());
+            UpdateUI(playerHealthUI, playerStats.health.ToString());
             audioSource.PlayOneShot(swordHit);
             blood.Play();
             enemyAttack = 0;
@@ -216,18 +206,23 @@ public class DuelManager : MonoBehaviour
     //player actions
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && !dodging && !actionPerformed)
+        if (context.performed && !actionPerformed)
         {
-            //print("attack");
-            //if (canAttack)
-            //{
-            //    print("hit");
-            //}
-            //if(enemyAttack > 0)
-            //{
-            //    print("hurt");
-            //}
-            //actionPerformed = true;
+            if (currentState == EnnemyMoves.Open)
+            {
+                print("hit");
+                ennemyHealth -= playerStats.damage;
+                UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
+            }
+            else
+            {
+                playerStats.health -= enemyAttack * ennemyStats.damage;
+                UpdateUI(playerHealthUI, playerStats.health.ToString());
+                audioSource.PlayOneShot(swordHit);
+                blood.Play();
+                enemyAttack = 0;
+            }
+            actionPerformed = true;
         }
     }
     public void Block(InputAction.CallbackContext context)

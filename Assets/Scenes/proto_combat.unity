@@ -613,6 +613,8 @@ MonoBehaviour:
     move: 3
   - timing: 1
     move: 1
+  - timing: 3
+    move: 4
   blockWindow: 0.9
   tick: {fileID: 8300000, guid: d8f2c36d2c7ade9489a9967d3413bd15, type: 3}
   carillon: {fileID: 8300000, guid: 37fd8a0469a726e4ba9c0bda9f59d90c, type: 3}
@@ -6547,6 +6549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  damage: 1
 --- !u!4 &712904060
 Transform:
   m_ObjectHideFlags: 0
