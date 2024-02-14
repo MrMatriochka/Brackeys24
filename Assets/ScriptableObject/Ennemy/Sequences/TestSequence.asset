@@ -15,9 +15,5 @@ MonoBehaviour:
   sequence:
   - timing: 1
     move: 1
-  - timing: 0.2
-    move: 3
-  - timing: 1
-    move: 1
   - timing: 3
     move: 4

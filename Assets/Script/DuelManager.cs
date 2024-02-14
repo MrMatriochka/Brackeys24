@@ -8,15 +8,15 @@ using EnnemyStruct;
 public class DuelManager : MonoBehaviour
 {
     [SerializeField] GameObject doorScene;
-    [SerializeField] EnnemiesStats ennemyStats;
+    EnnemiesStats ennemyStats;
+    int ennemyId = 0;
     [SerializeField] Player playerStats;
+    [SerializeField] RoomSetUp room;
+    [SerializeField] float timeBetweenEnnemies;
 
-    [Header("Move Sequence")]
+
     EnnemyAction[] sequence;
     [SerializeField] float blockWindow;
-    AudioSource audioSource;
-    [SerializeField] AudioClip tick;
-    [SerializeField] AudioClip carillon;
     EnnemyMoves currentState;
 
     [Header("Ennemy Feedback")]
@@ -29,6 +29,9 @@ public class DuelManager : MonoBehaviour
     [SerializeField] AudioClip swordBlock;
     [SerializeField] ParticleSystem blood;
     [SerializeField] ParticleSystem sparks;
+    AudioSource audioSource;
+    [SerializeField] AudioClip tick;
+    [SerializeField] AudioClip carillon;
 
     bool canBlock;
     int enemyAttack;
@@ -51,6 +54,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] TMP_Text ennemyHealthUI;
     void Start()
     {
+        ennemyStats = room.ennemyList[ennemyId];
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length-1)].sequence;
@@ -64,10 +68,19 @@ public class DuelManager : MonoBehaviour
 
     private void Update()
     {
-        if(ennemyHealth <= 0 && ennemyDead)
+        if(ennemyHealth <= 0 && !ennemyDead)
         {
+            ennemyDead = true;
             StopAllCoroutines();
-            Destroy(ennemyKatana.transform.parent.gameObject);
+            ennemyId++;
+            if (ennemyId< room.ennemyList.Length)
+            {
+                StartCoroutine(NextEnnemy());
+            }
+            else
+            {
+                Destroy(ennemyKatana.transform.parent.gameObject);
+            }
         }
     }
     IEnumerator EnnemySequence()
@@ -197,7 +210,6 @@ public class DuelManager : MonoBehaviour
         {
             if (currentState == EnnemyMoves.Open)
             {
-                print("hit");
                 ennemyHealth -= playerStats.damage;
                 UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             }
@@ -219,7 +231,6 @@ public class DuelManager : MonoBehaviour
 
             if (currentState == EnnemyMoves.LightAttack && canBlock)
             {
-                print("block");
                 enemyAttack --;
                 audioSource.PlayOneShot(swordBlock);
                 sparks.Play();
@@ -251,5 +262,20 @@ public class DuelManager : MonoBehaviour
     void UpdateUI(TMP_Text ui, string newText)
     {
         ui.text = newText;
+    }
+
+    IEnumerator NextEnnemy()
+    {
+        ennemyKatana.transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(timeBetweenEnnemies);  
+        ennemyStats = room.ennemyList[ennemyId];
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length - 1)].sequence;
+        ennemyHealth = ennemyStats.health;
+        UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
+        ennemyDead = false;
+        ennemyKatana.transform.parent.gameObject.SetActive(true);
+
+        StartCoroutine(EnnemySequence());
+        yield return null;
     }
 }

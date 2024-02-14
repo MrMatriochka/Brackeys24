@@ -15,7 +15,7 @@ public class RoomSetUp : MonoBehaviour
         Ennemy,
         PNJ
     }
-    void Start()
+    void Awake()
     {
         RoomInit();
     }

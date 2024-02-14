@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
 public class DoorManager : MonoBehaviour
 {
@@ -25,11 +26,17 @@ public class DoorManager : MonoBehaviour
     [SerializeField] float flashIntensity;
     [SerializeField] float flashTime;
     [SerializeField] AnimationCurve flashCurve;
-    
+
+    [Header("BehindDoor")]
+    bool ennemyBehindDoor;
+    bool pnjBehindDoor;
+    [SerializeField] DecalProjector silhouette;
+    [SerializeField] Material defaultPnjSilhouette;
     void Start()
     {
         timerSlider.maxValue = timer;
         timerSliderBis.maxValue = timer;
+        Init();
     }
 
     // Update is called once per frame
@@ -50,6 +57,22 @@ public class DoorManager : MonoBehaviour
         }
     }
 
+    void Init()
+    {
+        switch (room.roomSpaceList[0])
+        {
+            case RoomSetUp.RoomSpaces.Ennemy:
+                ennemyBehindDoor = true;
+                silhouette.material = room.ennemyList[0].silhouetteDecal;
+                break;
+            case RoomSetUp.RoomSpaces.PNJ:
+                pnjBehindDoor = true;
+                silhouette.material = defaultPnjSilhouette;
+                break;
+            default:
+                break;
+        }
+    }
     public void Open(InputAction.CallbackContext context)
     {
         if (context.performed )

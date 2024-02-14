@@ -9,7 +9,11 @@ public class EnnemiesStats : ScriptableObject
     public int damage;
     public AttackSequence[] sequences;
 
-    public Sprite baseSilhouette;
+    [Header("Fight")]
+    public Sprite baseStance;
     public Sprite attackStance;
+
+    [Header("Door")]
+    public Material silhouetteDecal;
     public AudioClip[] sfx;
 }
