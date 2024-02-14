@@ -6,32 +6,17 @@ using TMPro;
 
 public class DuelManager : MonoBehaviour
 {
-    [System.Serializable]
-    public struct EnnemyAction
-    {
-        public float timing;
-        public EnnemyMoves move;
-    }
-
-    public enum EnnemyMoves 
-    {
-        Pause,
-        LightAttack,
-        HeavyAttack,
-        ResetAction,
-        Open
-    }
     [SerializeField] GameObject doorScene;
     [SerializeField] EnnemiesStats ennemyStats;
     [SerializeField] Player playerStats;
 
     [Header("Move Sequence")]
-    [SerializeField] EnnemyAction[] sequence;
+    EnnemyStruct.EnnemyAction[] sequence;
     [SerializeField] float blockWindow;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip carillon;
-    EnnemyMoves currentState;
+    EnnemyStruct.EnnemyMoves currentState;
 
     [Header("Ennemy Feedback")]
     [SerializeField] float flashTime;
@@ -50,6 +35,7 @@ public class DuelManager : MonoBehaviour
     bool actionPerformed;
     bool dodging;
     int dodgingCD;
+    bool ennemyDead;
 
     [Header("Player Stances")]
     [SerializeField] GameObject player;
@@ -65,14 +51,24 @@ public class DuelManager : MonoBehaviour
     void Start()
     {
         doorScene.SetActive(false);
-       audioSource = GetComponent<AudioSource>();
-        StartCoroutine(EnnemySequence());
+        audioSource = GetComponent<AudioSource>();
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length-1)].sequence;
         playerInitialPos = player.transform.position;
         ennemyHealth = ennemyStats.health;
         UpdateUI(playerHealthUI, playerStats.health.ToString());
         UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
+
+        StartCoroutine(EnnemySequence());
     }
 
+    private void Update()
+    {
+        if(ennemyHealth <= 0 && ennemyDead)
+        {
+            StopAllCoroutines();
+            Destroy(ennemyKatana.transform.parent.gameObject);
+        }
+    }
     IEnumerator EnnemySequence()
     {
         for (int i = 0; i < sequence.Length-1; i++)
@@ -81,12 +77,12 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(sequence[i].timing / 2);
             switch (sequence[i].move)
             {
-                case EnnemyMoves.Pause:
+                case EnnemyStruct.EnnemyMoves.Pause:
                     break;
-                case EnnemyMoves.LightAttack:
+                case EnnemyStruct.EnnemyMoves.LightAttack:
                     StartCoroutine(Flash(whiteFlash, 1));
                     break;
-                case EnnemyMoves.HeavyAttack:
+                case EnnemyStruct.EnnemyMoves.HeavyAttack:
                     StartCoroutine(Flash(redFlash, 1));
                     break;
                 default:
@@ -113,7 +109,7 @@ public class DuelManager : MonoBehaviour
 
     IEnumerator PlayerSequence()
     {
-        foreach (EnnemyAction action in sequence)
+        foreach (EnnemyStruct.EnnemyAction action in sequence)
         {
             //audioSource.PlayOneShot(tick);
 
@@ -132,12 +128,12 @@ public class DuelManager : MonoBehaviour
             
             switch (action.move)
             {
-                case EnnemyMoves.LightAttack:
+                case EnnemyStruct.EnnemyMoves.LightAttack:
                     enemyAttack = 1;
                     yield return new WaitForSeconds(action.timing / 2);
                     StartCoroutine(EnemyKatanaStance(1));
                     break;
-                case EnnemyMoves.HeavyAttack:
+                case EnnemyStruct.EnnemyMoves.HeavyAttack:
                     //currentState = EnnemyMoves.HeavyAttack;
                     enemyAttack = 3;
                     yield return new WaitForSeconds(action.timing / 2);
@@ -151,6 +147,8 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(action.timing / 2);
         }
 
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length - 1)].sequence;
+        StartCoroutine(EnnemySequence());
         yield return null;
     }
 
@@ -169,7 +167,7 @@ public class DuelManager : MonoBehaviour
             blood.Play();
             enemyAttack = 0;
         }
-        if (dodgingCD > 0 && currentState != EnnemyMoves.ResetAction)
+        if (dodgingCD > 0 && currentState != EnnemyStruct.EnnemyMoves.ResetAction)
         {
             dodgingCD--;
         }
@@ -190,25 +188,13 @@ public class DuelManager : MonoBehaviour
         }
         yield return null;
     }
-    IEnumerator PlayerKatanaStance(GameObject katana, int num)
-    {
-        for (int i = 0; i < num; i++)
-        {
-            playerKatana.SetActive(false);
-            katana.SetActive(true);
-            yield return new WaitForSeconds(flashTime);
-            playerKatana.SetActive(true);
-            katana.SetActive(false);
-            yield return new WaitForSeconds(flashTime);
-        }
-        yield return null;
-    }
+
     //player actions
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && !actionPerformed)
         {
-            if (currentState == EnnemyMoves.Open)
+            if (currentState == EnnemyStruct.EnnemyMoves.Open)
             {
                 print("hit");
                 ennemyHealth -= playerStats.damage;
@@ -230,7 +216,7 @@ public class DuelManager : MonoBehaviour
         if (context.performed && !dodging && !actionPerformed)
         {
 
-            if (currentState == EnnemyMoves.LightAttack && canBlock)
+            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack && canBlock)
             {
                 print("block");
                 enemyAttack --;
@@ -246,7 +232,7 @@ public class DuelManager : MonoBehaviour
     {
         if (context.performed && !dodging && !actionPerformed)
         {
-            if (currentState == EnnemyMoves.LightAttack || currentState == EnnemyMoves.HeavyAttack)
+            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack || currentState == EnnemyStruct.EnnemyMoves.HeavyAttack)
             {
                 if (canBlock)
                 {

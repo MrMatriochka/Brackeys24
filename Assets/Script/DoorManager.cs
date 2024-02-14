@@ -11,9 +11,11 @@ public class DoorManager : MonoBehaviour
     [Header("Door")]
     [SerializeField] GameObject door;
     [SerializeField] float doorOpeningTime;
+    [SerializeField] float doorZoom;
 
     [Header("Timer")]
     [SerializeField] float timer;
+    float timerMultiplier = 1;
     [SerializeField] Slider timerSlider;
     [SerializeField] Slider timerSliderBis;
 
@@ -34,7 +36,7 @@ public class DoorManager : MonoBehaviour
     {
         if (timer > 0)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime*timerMultiplier;
             timerSlider.value = timer;
             timerSliderBis.value = timer;
         }
@@ -98,6 +100,17 @@ public class DoorManager : MonoBehaviour
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
             StartCoroutine(FlashTransi());
+        }
+    }
+
+    bool listening;
+    public void Listen(InputAction.CallbackContext context)
+    {
+        if (!listening && context.performed)
+        {
+            listening = true;
+            timerMultiplier = 2;
+            transform.position -= Vector3.forward * doorZoom;
         }
     }
 }
