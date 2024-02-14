@@ -9,6 +9,7 @@ public class DoorManager : MonoBehaviour
 {
     [SerializeField] GameObject fightScene;
     [SerializeField] RoomSetUp room;
+    [SerializeField] Player player;
 
     [Header("Door")]
     [SerializeField] GameObject door;
@@ -77,10 +78,16 @@ public class DoorManager : MonoBehaviour
     {
         if (context.performed )
         {
+            if (ennemyBehindDoor)
+            {
+                player.health -= room.ennemyList[0].damage;
+            }
+
             StartCoroutine(OpenDoor());
             StartCoroutine(FlashTransi());
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
+
         }
     }
     IEnumerator OpenDoor()
@@ -120,6 +127,10 @@ public class DoorManager : MonoBehaviour
     {
         if (context.performed)
         {
+            if (ennemyBehindDoor)
+            {
+                room.ennemyList.Remove(room.ennemyList[0]);
+            }
             door.SetActive(false);
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);

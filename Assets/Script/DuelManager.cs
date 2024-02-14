@@ -73,7 +73,7 @@ public class DuelManager : MonoBehaviour
             ennemyDead = true;
             StopAllCoroutines();
             ennemyId++;
-            if (ennemyId< room.ennemyList.Length)
+            if (ennemyId< room.ennemyList.Count)
             {
                 StartCoroutine(NextEnnemy());
             }

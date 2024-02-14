@@ -6,7 +6,7 @@ public class RoomSetUp : MonoBehaviour
 {
     public RoomStats room;
     public RoomSpaces[] roomSpaceList;
-    public EnnemiesStats[] ennemyList;
+    public List<EnnemiesStats> ennemyList;
     public RoomStats.Pnj pnj;
     public RoomStats.RoomType type;
     public enum RoomSpaces
@@ -26,7 +26,6 @@ public class RoomSetUp : MonoBehaviour
         type = room.type;
         //room slots
         int ennemyToSpawn = Random.Range(room.ennemyNb.x, room.ennemyNb.y);
-        ennemyList = new EnnemiesStats[ennemyToSpawn];
 
         roomSpaceList = new RoomSpaces[room.roomSpace];
         for (int i = 0; i < ennemyToSpawn; i++)
@@ -34,7 +33,7 @@ public class RoomSetUp : MonoBehaviour
             roomSpaceList[i] = RoomSpaces.Ennemy;
 
             //ennemy list
-            ennemyList[i] = room.possibleEnnemies[Random.Range(0, room.possibleEnnemies.Length - 1)];
+            ennemyList.Add(room.possibleEnnemies[Random.Range(0, room.possibleEnnemies.Length - 1)]);
         }
         if(pnj != RoomStats.Pnj.None)
         {
@@ -44,7 +43,6 @@ public class RoomSetUp : MonoBehaviour
     }
     void ShuffleSlot(RoomSpaces[] slot)
     {
-        // Knuth shuffle algorithm :: courtesy of Wikipedia :)
         for (int t = 0; t < roomSpaceList.Length; t++)
         {
             RoomSpaces tmp = roomSpaceList[t];
