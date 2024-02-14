@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fightScene: {fileID: 205126215}
+  room: {fileID: 712904061}
   door: {fileID: 758694003}
   doorOpeningTime: 0.3
   doorZoom: 3
@@ -623,15 +624,6 @@ MonoBehaviour:
   doorScene: {fileID: 16510053}
   ennemyStats: {fileID: 11400000, guid: 80f5faddf52f662408a7f10fdbe33c4e, type: 2}
   playerStats: {fileID: 712904059}
-  sequence:
-  - timing: 1
-    move: 1
-  - timing: 0.2
-    move: 3
-  - timing: 1
-    move: 1
-  - timing: 3
-    move: 4
   blockWindow: 0.9
   tick: {fileID: 8300000, guid: d8f2c36d2c7ade9489a9967d3413bd15, type: 3}
   carillon: {fileID: 8300000, guid: 37fd8a0469a726e4ba9c0bda9f59d90c, type: 3}
@@ -6550,6 +6542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712904060}
   - component: {fileID: 712904059}
+  - component: {fileID: 712904061}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6586,6 +6579,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &712904061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712904058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ef9feea3efd1c489c1716f28129fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
+  roomSpaceList: 
+  ennemyList: []
+  pnj: 0
+  type: 0
 --- !u!1001 &732929067
 PrefabInstance:
   m_ObjectHideFlags: 0

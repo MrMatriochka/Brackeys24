@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f547be2f4c28324daf37e5fb47e1efb, type: 3}
-  m_Name: TrainingDummies
+  m_Script: {fileID: 11500000, guid: 99a9c14124984984889f3c084a4e4682, type: 3}
+  m_Name: TestRoom
   m_EditorClassIdentifier: 
-  health: 3
-  damage: 1
-  sequences:
-  - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
+  type: 0
+  roomSpace: 5
+  ennemyNb: {x: 1, y: 3}
+  possibleEnnemies:
+  - {fileID: 11400000, guid: 80f5faddf52f662408a7f10fdbe33c4e, type: 2}
+  pnjType: 

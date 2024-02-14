@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using EnnemyStruct;
 
 public class DuelManager : MonoBehaviour
 {
@@ -11,12 +12,12 @@ public class DuelManager : MonoBehaviour
     [SerializeField] Player playerStats;
 
     [Header("Move Sequence")]
-    EnnemyStruct.EnnemyAction[] sequence;
+    EnnemyAction[] sequence;
     [SerializeField] float blockWindow;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip carillon;
-    EnnemyStruct.EnnemyMoves currentState;
+    EnnemyMoves currentState;
 
     [Header("Ennemy Feedback")]
     [SerializeField] float flashTime;
@@ -77,12 +78,12 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(sequence[i].timing / 2);
             switch (sequence[i].move)
             {
-                case EnnemyStruct.EnnemyMoves.Pause:
+                case EnnemyMoves.Pause:
                     break;
-                case EnnemyStruct.EnnemyMoves.LightAttack:
+                case EnnemyMoves.LightAttack:
                     StartCoroutine(Flash(whiteFlash, 1));
                     break;
-                case EnnemyStruct.EnnemyMoves.HeavyAttack:
+                case EnnemyMoves.HeavyAttack:
                     StartCoroutine(Flash(redFlash, 1));
                     break;
                 default:
@@ -109,7 +110,7 @@ public class DuelManager : MonoBehaviour
 
     IEnumerator PlayerSequence()
     {
-        foreach (EnnemyStruct.EnnemyAction action in sequence)
+        foreach (EnnemyAction action in sequence)
         {
             //audioSource.PlayOneShot(tick);
 
@@ -128,12 +129,12 @@ public class DuelManager : MonoBehaviour
             
             switch (action.move)
             {
-                case EnnemyStruct.EnnemyMoves.LightAttack:
+                case EnnemyMoves.LightAttack:
                     enemyAttack = 1;
                     yield return new WaitForSeconds(action.timing / 2);
                     StartCoroutine(EnemyKatanaStance(1));
                     break;
-                case EnnemyStruct.EnnemyMoves.HeavyAttack:
+                case EnnemyMoves.HeavyAttack:
                     //currentState = EnnemyMoves.HeavyAttack;
                     enemyAttack = 3;
                     yield return new WaitForSeconds(action.timing / 2);
@@ -167,7 +168,7 @@ public class DuelManager : MonoBehaviour
             blood.Play();
             enemyAttack = 0;
         }
-        if (dodgingCD > 0 && currentState != EnnemyStruct.EnnemyMoves.ResetAction)
+        if (dodgingCD > 0 && currentState != EnnemyMoves.ResetAction)
         {
             dodgingCD--;
         }
@@ -194,7 +195,7 @@ public class DuelManager : MonoBehaviour
     {
         if (context.performed && !actionPerformed)
         {
-            if (currentState == EnnemyStruct.EnnemyMoves.Open)
+            if (currentState == EnnemyMoves.Open)
             {
                 print("hit");
                 ennemyHealth -= playerStats.damage;
@@ -216,7 +217,7 @@ public class DuelManager : MonoBehaviour
         if (context.performed && !dodging && !actionPerformed)
         {
 
-            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack && canBlock)
+            if (currentState == EnnemyMoves.LightAttack && canBlock)
             {
                 print("block");
                 enemyAttack --;
@@ -232,7 +233,7 @@ public class DuelManager : MonoBehaviour
     {
         if (context.performed && !dodging && !actionPerformed)
         {
-            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack || currentState == EnnemyStruct.EnnemyMoves.HeavyAttack)
+            if (currentState == EnnemyMoves.LightAttack || currentState == EnnemyMoves.HeavyAttack)
             {
                 if (canBlock)
                 {

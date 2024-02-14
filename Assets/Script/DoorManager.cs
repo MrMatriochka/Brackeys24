@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class DoorManager : MonoBehaviour
 {
     [SerializeField] GameObject fightScene;
+    [SerializeField] RoomSetUp room;
 
     [Header("Door")]
     [SerializeField] GameObject door;
