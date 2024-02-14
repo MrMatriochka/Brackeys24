@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using EnnemyStruct;
 
 public class DuelManager : MonoBehaviour
 {
     [SerializeField] GameObject doorScene;
-    [SerializeField] EnnemiesStats ennemyStats;
+    EnnemiesStats ennemyStats;
+    int ennemyId = 0;
     [SerializeField] Player playerStats;
+    [SerializeField] RoomSetUp room;
+    [SerializeField] float timeBetweenEnnemies;
 
-    [Header("Move Sequence")]
-    EnnemyStruct.EnnemyAction[] sequence;
+
+    EnnemyAction[] sequence;
     [SerializeField] float blockWindow;
-    AudioSource audioSource;
-    [SerializeField] AudioClip tick;
-    [SerializeField] AudioClip carillon;
-    EnnemyStruct.EnnemyMoves currentState;
+    EnnemyMoves currentState;
 
     [Header("Ennemy Feedback")]
     [SerializeField] float flashTime;
@@ -28,6 +29,9 @@ public class DuelManager : MonoBehaviour
     [SerializeField] AudioClip swordBlock;
     [SerializeField] ParticleSystem blood;
     [SerializeField] ParticleSystem sparks;
+    AudioSource audioSource;
+    [SerializeField] AudioClip tick;
+    [SerializeField] AudioClip carillon;
 
     bool canBlock;
     int enemyAttack;
@@ -50,6 +54,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] TMP_Text ennemyHealthUI;
     void Start()
     {
+        ennemyStats = room.ennemyList[ennemyId];
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length-1)].sequence;
@@ -63,10 +68,19 @@ public class DuelManager : MonoBehaviour
 
     private void Update()
     {
-        if(ennemyHealth <= 0 && ennemyDead)
+        if(ennemyHealth <= 0 && !ennemyDead)
         {
+            ennemyDead = true;
             StopAllCoroutines();
-            Destroy(ennemyKatana.transform.parent.gameObject);
+            ennemyId++;
+            if (ennemyId< room.ennemyList.Length)
+            {
+                StartCoroutine(NextEnnemy());
+            }
+            else
+            {
+                Destroy(ennemyKatana.transform.parent.gameObject);
+            }
         }
     }
     IEnumerator EnnemySequence()
@@ -77,12 +91,12 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(sequence[i].timing / 2);
             switch (sequence[i].move)
             {
-                case EnnemyStruct.EnnemyMoves.Pause:
+                case EnnemyMoves.Pause:
                     break;
-                case EnnemyStruct.EnnemyMoves.LightAttack:
+                case EnnemyMoves.LightAttack:
                     StartCoroutine(Flash(whiteFlash, 1));
                     break;
-                case EnnemyStruct.EnnemyMoves.HeavyAttack:
+                case EnnemyMoves.HeavyAttack:
                     StartCoroutine(Flash(redFlash, 1));
                     break;
                 default:
@@ -109,7 +123,7 @@ public class DuelManager : MonoBehaviour
 
     IEnumerator PlayerSequence()
     {
-        foreach (EnnemyStruct.EnnemyAction action in sequence)
+        foreach (EnnemyAction action in sequence)
         {
             //audioSource.PlayOneShot(tick);
 
@@ -128,12 +142,12 @@ public class DuelManager : MonoBehaviour
             
             switch (action.move)
             {
-                case EnnemyStruct.EnnemyMoves.LightAttack:
+                case EnnemyMoves.LightAttack:
                     enemyAttack = 1;
                     yield return new WaitForSeconds(action.timing / 2);
                     StartCoroutine(EnemyKatanaStance(1));
                     break;
-                case EnnemyStruct.EnnemyMoves.HeavyAttack:
+                case EnnemyMoves.HeavyAttack:
                     //currentState = EnnemyMoves.HeavyAttack;
                     enemyAttack = 3;
                     yield return new WaitForSeconds(action.timing / 2);
@@ -167,7 +181,7 @@ public class DuelManager : MonoBehaviour
             blood.Play();
             enemyAttack = 0;
         }
-        if (dodgingCD > 0 && currentState != EnnemyStruct.EnnemyMoves.ResetAction)
+        if (dodgingCD > 0 && currentState != EnnemyMoves.ResetAction)
         {
             dodgingCD--;
         }
@@ -194,9 +208,8 @@ public class DuelManager : MonoBehaviour
     {
         if (context.performed && !actionPerformed)
         {
-            if (currentState == EnnemyStruct.EnnemyMoves.Open)
+            if (currentState == EnnemyMoves.Open)
             {
-                print("hit");
                 ennemyHealth -= playerStats.damage;
                 UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             }
@@ -216,9 +229,8 @@ public class DuelManager : MonoBehaviour
         if (context.performed && !dodging && !actionPerformed)
         {
 
-            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack && canBlock)
+            if (currentState == EnnemyMoves.LightAttack && canBlock)
             {
-                print("block");
                 enemyAttack --;
                 audioSource.PlayOneShot(swordBlock);
                 sparks.Play();
@@ -232,7 +244,7 @@ public class DuelManager : MonoBehaviour
     {
         if (context.performed && !dodging && !actionPerformed)
         {
-            if (currentState == EnnemyStruct.EnnemyMoves.LightAttack || currentState == EnnemyStruct.EnnemyMoves.HeavyAttack)
+            if (currentState == EnnemyMoves.LightAttack || currentState == EnnemyMoves.HeavyAttack)
             {
                 if (canBlock)
                 {
@@ -250,5 +262,20 @@ public class DuelManager : MonoBehaviour
     void UpdateUI(TMP_Text ui, string newText)
     {
         ui.text = newText;
+    }
+
+    IEnumerator NextEnnemy()
+    {
+        ennemyKatana.transform.parent.gameObject.SetActive(false);
+        yield return new WaitForSeconds(timeBetweenEnnemies);  
+        ennemyStats = room.ennemyList[ennemyId];
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length - 1)].sequence;
+        ennemyHealth = ennemyStats.health;
+        UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
+        ennemyDead = false;
+        ennemyKatana.transform.parent.gameObject.SetActive(true);
+
+        StartCoroutine(EnnemySequence());
+        yield return null;
     }
 }

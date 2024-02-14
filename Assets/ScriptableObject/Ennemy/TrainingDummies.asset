@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f547be2f4c28324daf37e5fb47e1efb, type: 3}
   m_Name: TrainingDummies
   m_EditorClassIdentifier: 
-  health: 3
+  health: 1
   damage: 1
+  sequences:
+  - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
+  baseStance: {fileID: 0}
+  attackStance: {fileID: 0}
+  silhouetteDecal: {fileID: 2100000, guid: 7f582e3ca3872cd4db85c24dd7629fd3, type: 2}
+  sfx: []
