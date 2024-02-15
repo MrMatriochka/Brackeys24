@@ -33,6 +33,8 @@ public class DoorManager : MonoBehaviour
     bool pnjBehindDoor;
     [SerializeField] DecalProjector silhouette;
     [SerializeField] Material defaultPnjSilhouette;
+
+    bool actionChose;
     void Start()
     {
         timerSlider.maxValue = timer;
@@ -51,6 +53,7 @@ public class DoorManager : MonoBehaviour
         }
         if(timer <= 0)
         {
+            actionChose = true;
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
             StartCoroutine(OpenDoor());
@@ -76,8 +79,9 @@ public class DoorManager : MonoBehaviour
     }
     public void Open(InputAction.CallbackContext context)
     {
-        if (context.performed )
+        if (context.performed  && !actionChose)
         {
+            actionChose = true;
             if (ennemyBehindDoor)
             {
                 Player.health -= room.ennemyList[0].damage;
@@ -125,8 +129,9 @@ public class DoorManager : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !actionChose)
         {
+            actionChose = true;
             if (ennemyBehindDoor)
             {
                 room.ennemyList.Remove(room.ennemyList[0]);
@@ -141,7 +146,7 @@ public class DoorManager : MonoBehaviour
     bool listening;
     public void Listen(InputAction.CallbackContext context)
     {
-        if (!listening && context.performed)
+        if (!listening && context.performed && !actionChose)
         {
             listening = true;
             timerMultiplier = 2;
