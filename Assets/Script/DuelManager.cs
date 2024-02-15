@@ -61,7 +61,7 @@ public class DuelManager : MonoBehaviour
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         playerInitialPos = player.transform.position;
         ennemyHealth = ennemyStats.health;
-        UpdateUI(playerHealthUI, playerStats.health.ToString());
+        UpdateUI(playerHealthUI, Player.health.ToString());
         UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
 
         StartCoroutine(EnnemySequence());
@@ -177,8 +177,8 @@ public class DuelManager : MonoBehaviour
         canBlock = false;
         if (enemyAttack > 0)
         {
-            playerStats.health -= enemyAttack * ennemyStats.damage;
-            UpdateUI(playerHealthUI, playerStats.health.ToString());
+            Player.health -= enemyAttack * ennemyStats.damage;
+            UpdateUI(playerHealthUI, Player.health.ToString());
             audioSource.PlayOneShot(swordHit);
             blood.Play();
             enemyAttack = 0;
@@ -217,8 +217,8 @@ public class DuelManager : MonoBehaviour
             }
             else
             {
-                playerStats.health -= enemyAttack * ennemyStats.damage;
-                UpdateUI(playerHealthUI, playerStats.health.ToString());
+                Player.health -= enemyAttack * ennemyStats.damage;
+                UpdateUI(playerHealthUI, Player.health.ToString());
                 audioSource.PlayOneShot(swordHit);
                 blood.Play();
                 enemyAttack = 0;

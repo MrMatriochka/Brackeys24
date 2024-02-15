@@ -6569,7 +6569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee3d050da182ec44ad0627d34e812c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  baseHealth: 3
   damage: 1
   coins: 0
 --- !u!4 &712904060
@@ -6599,7 +6599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ef9feea3efd1c489c1716f28129fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
   roomSpaceList: 
   ennemyList: []
   pnj: 0
@@ -6617,6 +6616,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCompo:
+  - roomNb: 3
+    possibleRooms:
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
   - roomNb: 3
     possibleRooms:
     - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}

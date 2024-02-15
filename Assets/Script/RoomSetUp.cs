@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RoomSetUp : MonoBehaviour
 {
-    public RoomStats room;
-    public RoomSpaces[] roomSpaceList;
-    public List<EnnemiesStats> ennemyList;
-    public RoomStats.Pnj pnj;
-    public RoomStats.RoomType type;
+    RoomStats room;
+    [HideInInspector] public RoomSpaces[] roomSpaceList;
+    [HideInInspector]public List<EnnemiesStats> ennemyList;
+    [HideInInspector] public RoomStats.Pnj pnj;
+    [HideInInspector] public RoomStats.RoomType type;
 
     public enum RoomSpaces
     {

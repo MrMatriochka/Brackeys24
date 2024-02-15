@@ -80,7 +80,7 @@ public class DoorManager : MonoBehaviour
         {
             if (ennemyBehindDoor)
             {
-                player.health -= room.ennemyList[0].damage;
+                Player.health -= room.ennemyList[0].damage;
             }
 
             StartCoroutine(OpenDoor());
