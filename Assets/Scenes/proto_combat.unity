@@ -159,7 +159,7 @@ MonoBehaviour:
   door: {fileID: 758694003}
   doorOpeningTime: 0.3
   doorZoom: 3
-  timer: 3
+  timer: 5
   timerSlider: {fileID: 311537671}
   timerSliderBis: {fileID: 496206126}
   flash: {fileID: 1730378457}
@@ -6549,6 +6549,7 @@ GameObject:
   - component: {fileID: 712904060}
   - component: {fileID: 712904059}
   - component: {fileID: 712904061}
+  - component: {fileID: 712904062}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6570,6 +6571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   damage: 1
+  coins: 0
 --- !u!4 &712904060
 Transform:
   m_ObjectHideFlags: 0
@@ -6602,6 +6604,24 @@ MonoBehaviour:
   ennemyList: []
   pnj: 0
   type: 0
+--- !u!114 &712904062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712904058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134e8de8da144b24cb5d8d5da6287be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneCompo:
+  - roomNb: 3
+    possibleRooms:
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
 --- !u!1001 &732929067
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TestRoom
   m_EditorClassIdentifier: 
   type: 0
-  roomSpace: 3
-  ennemyNb: {x: 3, y: 3}
+  roomSpace: 2
+  ennemyNb: {x: 2, y: 2}
   possibleEnnemies:
   - {fileID: 11400000, guid: 80f5faddf52f662408a7f10fdbe33c4e, type: 2}
   pnjType: 00000000

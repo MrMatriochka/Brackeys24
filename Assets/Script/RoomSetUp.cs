@@ -9,6 +9,7 @@ public class RoomSetUp : MonoBehaviour
     public List<EnnemiesStats> ennemyList;
     public RoomStats.Pnj pnj;
     public RoomStats.RoomType type;
+
     public enum RoomSpaces
     {
         Empty,
@@ -17,12 +18,14 @@ public class RoomSetUp : MonoBehaviour
     }
     void Awake()
     {
+        print(WorldGeneration.playerProgression);
+        room = WorldGeneration.roomList[WorldGeneration.playerProgression];
         RoomInit();
     }
 
     void RoomInit()
     {
-        pnj = room.pnjType[Random.Range(0, room.pnjType.Length-1)];
+        pnj = room.pnjType[Random.Range(0, room.pnjType.Length)];
         type = room.type;
         //room slots
         int ennemyToSpawn = Random.Range(room.ennemyNb.x, room.ennemyNb.y);
@@ -33,7 +36,7 @@ public class RoomSetUp : MonoBehaviour
             roomSpaceList[i] = RoomSpaces.Ennemy;
 
             //ennemy list
-            ennemyList.Add(room.possibleEnnemies[Random.Range(0, room.possibleEnnemies.Length - 1)]);
+            ennemyList.Add(room.possibleEnnemies[Random.Range(0, room.possibleEnnemies.Length)]);
         }
         if(pnj != RoomStats.Pnj.None)
         {

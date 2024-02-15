@@ -27,7 +27,7 @@ public class RoomStats : ScriptableObject
 
 	public enum RoomType
     {
-		Desfault,
+		Default,
 		Onsen,
 		Forge,
 		Labo,

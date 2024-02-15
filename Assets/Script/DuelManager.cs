@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using EnnemyStruct;
+using UnityEngine.SceneManagement;
 
 public class DuelManager : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class DuelManager : MonoBehaviour
         ennemyStats = room.ennemyList[ennemyId];
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
-        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length-1)].sequence;
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         playerInitialPos = player.transform.position;
         ennemyHealth = ennemyStats.health;
         UpdateUI(playerHealthUI, playerStats.health.ToString());
@@ -80,6 +81,7 @@ public class DuelManager : MonoBehaviour
             else
             {
                 Destroy(ennemyKatana.transform.parent.gameObject);
+                StartCoroutine(NextRoom());
             }
         }
     }
@@ -269,13 +271,30 @@ public class DuelManager : MonoBehaviour
         ennemyKatana.transform.parent.gameObject.SetActive(false);
         yield return new WaitForSeconds(timeBetweenEnnemies);  
         ennemyStats = room.ennemyList[ennemyId];
-        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length - 1)].sequence;
+        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         ennemyHealth = ennemyStats.health;
         UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
         ennemyDead = false;
         ennemyKatana.transform.parent.gameObject.SetActive(true);
 
         StartCoroutine(EnnemySequence());
+        yield return null;
+    }
+
+    IEnumerator NextRoom()
+    {
+        yield return new WaitForSeconds(2);
+        WorldGeneration.playerProgression++;
+        if(WorldGeneration.playerProgression == WorldGeneration.roomList.Length)
+        {
+            print("gg");
+            //Fin du jeu
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
         yield return null;
     }
 }
