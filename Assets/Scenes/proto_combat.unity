@@ -6548,8 +6548,8 @@ GameObject:
   m_Component:
   - component: {fileID: 712904060}
   - component: {fileID: 712904059}
-  - component: {fileID: 712904061}
   - component: {fileID: 712904062}
+  - component: {fileID: 712904061}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
