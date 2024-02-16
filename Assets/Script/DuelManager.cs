@@ -55,16 +55,32 @@ public class DuelManager : MonoBehaviour
     [SerializeField] TMP_Text ennemyHealthUI;
     void Start()
     {
-        ennemyStats = room.ennemyList[ennemyId];
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
-        sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
-        playerInitialPos = player.transform.position;
-        ennemyHealth = ennemyStats.health;
-        UpdateUI(playerHealthUI, Player.health.ToString());
-        UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
 
-        StartCoroutine(EnnemySequence());
+        if(ennemyId>= room.ennemyList.Count)
+        {
+            Destroy(ennemyKatana.transform.parent.gameObject);
+            ennemyDead = true;
+            StartCoroutine(NextRoom());
+        }else if (room.ennemyList[ennemyId] == null)
+        {
+            Destroy(ennemyKatana.transform.parent.gameObject);
+            ennemyDead = true;
+            StartCoroutine(NextRoom());
+        }
+        else
+        {
+            ennemyStats = room.ennemyList[ennemyId];
+            sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
+            playerInitialPos = player.transform.position;
+            ennemyHealth = ennemyStats.health;
+            UpdateUI(playerHealthUI, Player.health.ToString());
+            UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
+
+            StartCoroutine(EnnemySequence());
+        }
+        
     }
 
     private void Update()
