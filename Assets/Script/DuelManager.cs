@@ -62,12 +62,13 @@ public class DuelManager : MonoBehaviour
         {
             Destroy(ennemyKatana.transform.parent.gameObject);
             ennemyDead = true;
-            StartCoroutine(NextRoom());
-        }else if (room.ennemyList[ennemyId] == null)
+            CombatOver();
+        }
+        else if (room.ennemyList[ennemyId] == null)
         {
             Destroy(ennemyKatana.transform.parent.gameObject);
             ennemyDead = true;
-            StartCoroutine(NextRoom());
+            CombatOver();
         }
         else
         {
@@ -97,7 +98,7 @@ public class DuelManager : MonoBehaviour
             else
             {
                 Destroy(ennemyKatana.transform.parent.gameObject);
-                StartCoroutine(NextRoom());
+                CombatOver();
             }
         }
     }
@@ -296,9 +297,18 @@ public class DuelManager : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator NextRoom()
+
+    public GameObject nextRoomButton;
+    void CombatOver()
     {
-        yield return new WaitForSeconds(2);
+        if(room.pnj != RoomStats.Pnj.None)
+        {
+            //spawn boutique
+        }
+        nextRoomButton.SetActive(true);
+    }
+    public void NextRoom()
+    {
         WorldGeneration.playerProgression++;
         if(WorldGeneration.playerProgression == WorldGeneration.roomList.Length)
         {
@@ -309,7 +319,5 @@ public class DuelManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
-        yield return null;
     }
 }

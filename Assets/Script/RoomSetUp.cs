@@ -25,6 +25,12 @@ public class RoomSetUp : MonoBehaviour
     void RoomInit()
     {
         pnj = room.pnjType[Random.Range(0, room.pnjType.Length)];
+        if(WorldGeneration.pnjStatus[pnj] == false)
+        {
+            pnj = RoomStats.Pnj.None;
+        }
+
+
         type = room.type;
         //room slots
         int ennemyToSpawn = Random.Range(room.ennemyNb.x, room.ennemyNb.y);

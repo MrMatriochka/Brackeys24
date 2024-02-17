@@ -136,6 +136,11 @@ public class DoorManager : MonoBehaviour
             {
                 room.ennemyList.Remove(room.ennemyList[0]);
             }
+            if (pnjBehindDoor)
+            {
+                WorldGeneration.pnjStatus[room.pnj] = false;
+                room.pnj = RoomStats.Pnj.None;
+            }
             door.SetActive(false);
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);

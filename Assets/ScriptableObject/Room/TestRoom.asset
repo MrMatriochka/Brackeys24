@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   roomSpace: 1
-  ennemyNb: {x: 1, y: 1}
+  ennemyNb: {x: 0, y: 0}
   possibleEnnemies:
   - {fileID: 11400000, guid: 80f5faddf52f662408a7f10fdbe33c4e, type: 2}
-  pnjType: 00000000
+  pnjType: 01000000
   decor: {fileID: 0}

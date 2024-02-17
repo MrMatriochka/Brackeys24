@@ -7,7 +7,7 @@ public class WorldGeneration : MonoBehaviour
     public static WorldGeneration instance;
     public static RoomStats[] roomList;
     public static int playerProgression=0;
-
+    public static Dictionary<RoomStats.Pnj,bool> pnjStatus = new Dictionary<RoomStats.Pnj, bool>();
     [System.Serializable]
     public struct ZoneComposition
     {
@@ -29,6 +29,7 @@ public class WorldGeneration : MonoBehaviour
         if (playerProgression == 0)
         {
             GenerateWorld();
+            InitPnjStatus();
         }
         
     }
@@ -49,6 +50,17 @@ public class WorldGeneration : MonoBehaviour
                 roomList[id] = zone.possibleRooms[Random.Range(0, zone.possibleRooms.Length)];
                 id++;
             }
+        }
+    }
+
+    void InitPnjStatus()
+    {
+        if(pnjStatus.Count != 0) pnjStatus.Clear();
+
+        int pnjTypes = System.Enum.GetValues(typeof(RoomStats.Pnj)).Length;
+        for (int i = 0; i < pnjTypes; i++)
+        {
+            pnjStatus.Add((RoomStats.Pnj)i, true );
         }
     }
 }
