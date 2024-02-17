@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField]int baseHealth;
     public static int health;
     public int damage;
-    public int coins;
+    //public int coins;
 
     private void Start()
     {

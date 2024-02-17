@@ -13,6 +13,7 @@ public class RoomStats : ScriptableObject
 	public EnnemiesStats[] possibleEnnemies;
 
 	public Pnj[] pnjType;
+	public GameObject decor;
 	public enum Pnj
 	{
 		None,

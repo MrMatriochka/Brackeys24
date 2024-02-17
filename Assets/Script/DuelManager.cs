@@ -266,7 +266,6 @@ public class DuelManager : MonoBehaviour
             {
                 if (canBlock)
                 {
-                    print("dodge");
                     enemyAttack = 0;
                 }
             }

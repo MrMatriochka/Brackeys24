@@ -34,18 +34,20 @@ public class WorldGeneration : MonoBehaviour
     }
     void GenerateWorld()
     {
-        print("Hello world");
+        
         int totalRooms = 0;
         foreach (ZoneComposition zone in zoneCompo)
         {
             totalRooms += zone.roomNb;
         }
         roomList = new RoomStats[totalRooms];
+        int id = 0;
         foreach (ZoneComposition zone in zoneCompo)
         {
             for (int i = 0; i < zone.roomNb; i++)
             {
-                roomList[i] = zone.possibleRooms[Random.Range(0, zone.possibleRooms.Length)];
+                roomList[id] = zone.possibleRooms[Random.Range(0, zone.possibleRooms.Length)];
+                id++;
             }
         }
     }

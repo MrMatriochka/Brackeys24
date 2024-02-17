@@ -18,7 +18,6 @@ public class RoomSetUp : MonoBehaviour
     }
     void Awake()
     {
-        print(WorldGeneration.playerProgression);
         room = WorldGeneration.roomList[WorldGeneration.playerProgression];
         RoomInit();
     }
