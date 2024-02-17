@@ -638,7 +638,7 @@ RectTransform:
   m_Father: {fileID: 783212417}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -802,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &205126216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,6 +839,7 @@ MonoBehaviour:
   playerHealthUI: {fileID: 1443982393}
   ennemyHealthUI: {fileID: 1057872102}
   nextRoomButton: {fileID: 1377504386}
+  shop: {fileID: 831977660}
 --- !u!4 &205126217
 Transform:
   m_ObjectHideFlags: 0
@@ -7153,8 +7154,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 831977662}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+      - m_Target: {fileID: 892073566}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
         m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
@@ -12503,7 +12504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831977661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12536,8 +12537,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eaf5da0d406720498afa7dd67e25164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopType: {fileID: 0}
-  ItemSlot: []
+  allShopType:
+  - {fileID: 11400000, guid: b0e6aec6453439c4aa7fe3ab6f42f10e, type: 2}
+  - {fileID: 11400000, guid: 2d50fc89fedfa7c4ba6c9067be935171, type: 2}
+  - {fileID: 11400000, guid: 0069ff874b5a21443a86d816d3bec80a, type: 2}
+  - {fileID: 11400000, guid: 29e00a770fe9b274592c9b8e169645ca, type: 2}
+  - {fileID: 11400000, guid: a50f410d0dae0b9478fc8289be331725, type: 2}
+  room: {fileID: 712904061}
+  ItemSlot:
+  - {fileID: 892073564}
 --- !u!114 &831977663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12622,6 +12630,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 892073565}
+  - component: {fileID: 892073566}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -12650,6 +12659,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &892073566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892073564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac3b8f7c96852a49a0eee4b5c96fcd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1167627015}
+  upgrade: {fileID: 0}
 --- !u!1 &913879490 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aaebf24d3b022c945a234ce694ad7cb5,
@@ -14161,7 +14184,7 @@ RectTransform:
   m_Father: {fileID: 1713417956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14511,7 +14534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2071692759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14700,6 +14723,6 @@ SceneRoots:
   - {fileID: 54380486}
   - {fileID: 410087041}
   - {fileID: 205126217}
-  - {fileID: 712904060}
   - {fileID: 2071692761}
   - {fileID: 1093241743}
+  - {fileID: 712904060}
