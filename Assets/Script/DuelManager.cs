@@ -61,6 +61,7 @@ public class DuelManager : MonoBehaviour
         Instantiate(room.room.decor, roomSpawnPoint.position, room.room.decor.transform.rotation);
         playerStats = Player.instance;
         blockWindow += Player.paryBonus;
+        UpdateUI(playerHealthUI, Player.health.ToString());
 
         if (ennemyId>= room.ennemyList.Count)
         {
@@ -80,9 +81,8 @@ public class DuelManager : MonoBehaviour
             sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
             playerInitialPos = player.transform.position;
             ennemyHealth = ennemyStats.health;
-            UpdateUI(playerHealthUI, Player.health.ToString());
+            
             UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
-
             StartCoroutine(EnnemySequence());
         }
         
@@ -306,11 +306,12 @@ public class DuelManager : MonoBehaviour
 
 
     public GameObject nextRoomButton;
+    public GameObject shop;
     void CombatOver()
     {
         if(room.pnj != RoomStats.Pnj.None)
         {
-            //spawn boutique
+            shop.SetActive(true);
         }
         nextRoomButton.SetActive(true);
     }

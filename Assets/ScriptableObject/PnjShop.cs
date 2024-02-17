@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Upgrade", menuName = "Upgrade")]
+[CreateAssetMenu(fileName = "New shop", menuName = "Shop")]
 public class PnjShop : ScriptableObject
 {
     public RoomStats.Pnj type;
 
-    public Upgrades.Upgrade[] itemList;
+    public Upgrades[] itemList;
 }
