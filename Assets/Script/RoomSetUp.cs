@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomSetUp : MonoBehaviour
 {
-    RoomStats room;
+    [HideInInspector] public RoomStats room;
     [HideInInspector] public RoomSpaces[] roomSpaceList;
     [HideInInspector]public List<EnnemiesStats> ennemyList;
     [HideInInspector] public RoomStats.Pnj pnj;

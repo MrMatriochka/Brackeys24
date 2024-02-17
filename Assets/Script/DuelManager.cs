@@ -13,6 +13,7 @@ public class DuelManager : MonoBehaviour
     int ennemyId = 0;
     [SerializeField] Player playerStats;
     [SerializeField] RoomSetUp room;
+    [SerializeField] Transform roomSpawnPoint;
     [SerializeField] float timeBetweenEnnemies;
 
 
@@ -57,6 +58,7 @@ public class DuelManager : MonoBehaviour
     {
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        Instantiate(room.room.decor, roomSpawnPoint.position, room.room.decor.transform.rotation);
 
         if(ennemyId>= room.ennemyList.Count)
         {
