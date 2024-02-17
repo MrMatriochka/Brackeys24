@@ -11,7 +11,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] GameObject doorScene;
     EnnemiesStats ennemyStats;
     int ennemyId = 0;
-    [SerializeField] Player playerStats;
+    Player playerStats;
     [SerializeField] RoomSetUp room;
     [SerializeField] Transform roomSpawnPoint;
     [SerializeField] float timeBetweenEnnemies;
@@ -59,8 +59,10 @@ public class DuelManager : MonoBehaviour
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         Instantiate(room.room.decor, roomSpawnPoint.position, room.room.decor.transform.rotation);
+        playerStats = Player.instance;
+        blockWindow += Player.paryBonus;
 
-        if(ennemyId>= room.ennemyList.Count)
+        if (ennemyId>= room.ennemyList.Count)
         {
             Destroy(ennemyKatana.transform.parent.gameObject);
             ennemyDead = true;
@@ -108,16 +110,19 @@ public class DuelManager : MonoBehaviour
     {
         for (int i = 0; i < sequence.Length-1; i++)
         {
-            audioSource.PlayOneShot(tick);
+            
             yield return new WaitForSeconds(sequence[i].timing / 2);
             switch (sequence[i].move)
             {
                 case EnnemyMoves.Pause:
+                    audioSource.PlayOneShot(tick);
                     break;
                 case EnnemyMoves.LightAttack:
+                    audioSource.PlayOneShot(tick);
                     StartCoroutine(Flash(whiteFlash, 1));
                     break;
                 case EnnemyMoves.HeavyAttack:
+                    audioSource.PlayOneShot(tick);
                     StartCoroutine(Flash(redFlash, 1));
                     break;
                 default:

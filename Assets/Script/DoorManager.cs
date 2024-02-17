@@ -12,7 +12,8 @@ public class DoorManager : MonoBehaviour
     [SerializeField] Player player;
 
     [Header("Door")]
-    [SerializeField] GameObject door;
+    [SerializeField] GameObject doorLeft;
+    [SerializeField] GameObject doorRight;
     [SerializeField] float doorOpeningTime;
     [SerializeField] float doorZoom;
 
@@ -37,6 +38,7 @@ public class DoorManager : MonoBehaviour
     bool actionChose;
     void Start()
     {
+        timer += Player.doorTimeBonus;
         timerSlider.maxValue = timer;
         timerSliderBis.maxValue = timer;
         Init();
@@ -56,7 +58,8 @@ public class DoorManager : MonoBehaviour
             actionChose = true;
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
-            StartCoroutine(OpenDoor());
+            StartCoroutine(OpenDoorLeft());
+            StartCoroutine(OpenDoorRight());
             StartCoroutine(FlashTransi());
         }
     }
@@ -87,29 +90,44 @@ public class DoorManager : MonoBehaviour
                 Player.health -= room.ennemyList[0].damage;
             }
 
-            StartCoroutine(OpenDoor());
+            StartCoroutine(OpenDoorLeft());
+            StartCoroutine(OpenDoorRight());
             StartCoroutine(FlashTransi());
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
 
         }
     }
-    IEnumerator OpenDoor()
+    IEnumerator OpenDoorLeft()
     {
-        Vector3 Gotoposition = new Vector3(door.transform.position.x+10, door.transform.position.y, door.transform.position.z);
+        Vector3 Gotoposition = new Vector3(doorLeft.transform.position.x+10, doorLeft.transform.position.y, doorLeft.transform.position.z);
         float elapsedTime = 0;
-        Vector3 currentPos = door.transform.position;
+        Vector3 currentPos = doorLeft.transform.position;
 
         while (elapsedTime < doorOpeningTime)
         {
-            door.transform.position = Vector3.Lerp(currentPos, Gotoposition, (elapsedTime / doorOpeningTime));
+            doorLeft.transform.position = Vector3.Lerp(currentPos, Gotoposition, (elapsedTime / doorOpeningTime));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         yield return null;
     }
+    IEnumerator OpenDoorRight()
+    {
+        Vector3 Gotoposition = new Vector3(doorRight.transform.position.x - 10, doorRight.transform.position.y, doorRight.transform.position.z);
+        float elapsedTime = 0;
+        Vector3 currentPos = doorRight.transform.position;
 
+        while (elapsedTime < doorOpeningTime)
+        {
+            doorRight.transform.position = Vector3.Lerp(currentPos, Gotoposition, (elapsedTime / doorOpeningTime));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return null;
+    }
     IEnumerator FlashTransi()
     {
         float elapsedTime = 0;
@@ -141,7 +159,8 @@ public class DoorManager : MonoBehaviour
                 WorldGeneration.pnjStatus[room.pnj] = false;
                 room.pnj = RoomStats.Pnj.None;
             }
-            door.SetActive(false);
+            doorLeft.SetActive(false);
+            doorRight.SetActive(false);
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
             StartCoroutine(FlashTransi());
