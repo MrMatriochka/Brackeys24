@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
-    [SerializeField]int baseHealth;
+    [SerializeField] int baseHealth;
     public static int health;
     public static int maxhealth;
     [SerializeField] int baseDamage;
@@ -29,10 +29,20 @@ public class Player : MonoBehaviour
 
         if (WorldGeneration.playerProgression == 0)
         {
-            health = baseHealth;
-            maxhealth = baseHealth;
-            damage = baseDamage;
+            Init();
         }
 
     }
+
+    public void Init()
+    {
+        health = baseHealth;
+        maxhealth = baseHealth;
+        damage = baseDamage;
+
+        critRate = 0;
+        paryBonus = 0;
+        doorTimeBonus = 0;
+    }
 }
+

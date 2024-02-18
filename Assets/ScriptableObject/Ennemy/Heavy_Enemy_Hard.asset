@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 152c47272ecd1984e8f03bbf2b2bc50f, type: 2}
   - {fileID: 11400000, guid: 92ff4e99ddd44804385a9c3b9ca51e84, type: 2}
   - {fileID: 11400000, guid: 7579200f830ad7a4689b49c453331a75, type: 2}
-  baseStance: {fileID: 0}
-  attackStance: {fileID: 0}
-  heavyStance: {fileID: 0}
+  baseStance: {fileID: 21300000, guid: cf684984ac60082429d1c5eb293a1d6c, type: 3}
+  attackStance: {fileID: 21300000, guid: eb1013f77708f824c8a0580e22206ffb, type: 3}
+  heavyStance: {fileID: 21300000, guid: 2d351f7a00e59654da7c5c27d2d8223a, type: 3}
   sfx: []

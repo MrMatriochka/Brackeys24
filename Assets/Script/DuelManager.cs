@@ -119,6 +119,8 @@ public class DuelManager : MonoBehaviour
             StartCoroutine(Blood(bloodMatPlayer));
             ennemyDead = true;
             gameOver.SetActive(true);
+            WorldGeneration.playerProgression = 0;
+            Player.instance.Init();
         }
     }
     IEnumerator EnnemySequence()
@@ -318,13 +320,13 @@ public class DuelManager : MonoBehaviour
     }
     IEnumerator NextEnnemy()
     {
-        ennemy.transform.parent.gameObject.SetActive(false);
+        ennemy.transform.gameObject.SetActive(false);
         yield return new WaitForSeconds(timeBetweenEnnemies);  
         ennemyStats = room.ennemyList[ennemyId];
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         ennemyHealth = ennemyStats.health;
         ennemyDead = false;
-        ennemy.transform.parent.gameObject.SetActive(true);
+        ennemy.transform.gameObject.SetActive(true);
 
         StartCoroutine(EnnemySequence());
         yield return null;
