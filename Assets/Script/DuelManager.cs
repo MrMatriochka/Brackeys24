@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using EnnemyStruct;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class DuelManager : MonoBehaviour
 {
@@ -26,12 +27,10 @@ public class DuelManager : MonoBehaviour
     [SerializeField] GameObject whiteFlash;
     [SerializeField] GameObject redFlash;
     [SerializeField] SpriteRenderer ennemy;
-    //[SerializeField] Sprite ennemyKatana;
-    //[SerializeField] Sprite ennemyKatana_attack;
     [SerializeField] AudioClip swordHit;
     [SerializeField] AudioClip swordBlock;
     [SerializeField] ParticleSystem blood;
-    [SerializeField] ParticleSystem sparks;
+    [SerializeField] VisualEffect sparks;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip carillon;

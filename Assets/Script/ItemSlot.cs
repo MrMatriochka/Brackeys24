@@ -40,7 +40,7 @@ public class ItemSlot : MonoBehaviour
                 functions.UpMaxHealth(1);
                 break;
             case Upgrades.Upgrade.ParcheminListen:
-                functions.ParcheminListen(1);
+                functions.ParcheminListen(5);
                 break;
             case Upgrades.Upgrade.SakeSmall:
                 functions.Heal(1);
