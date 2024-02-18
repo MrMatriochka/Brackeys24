@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class UpgradesFunction : MonoBehaviour
 {
-    public void ParcheminCrit(float crit, float parry)
+    public void UpCrit(float crit)
     {
         Player.critRate += crit;
-        Player.paryBonus += parry;
     }
-    public void ParcheminDamage(int damage)
+    public void UpPary(float parry)
+    {
+        Player.paryBonus += parry;
+        if(Player.paryBonus <0) Player.paryBonus = 0;
+    }
+    public void UpDamage(int damage)
     {
         Player.damage += damage;
+        if (Player.damage <= 0) Player.damage = 1;
     }
-    public void ParcheminVie(int health)
+    public void UpMaxHealth(int health)
     {
         Player.maxhealth += health;
         Player.health += health;
+    }
+    public void Heal(int heal)
+    {
+        Player.health += heal;
+        if (Player.health > Player.maxhealth) Player.health = Player.maxhealth;
     }
     public void ParcheminListen(float time)
     {

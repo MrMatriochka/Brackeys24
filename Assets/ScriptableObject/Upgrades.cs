@@ -15,6 +15,13 @@ public class Upgrades : ScriptableObject
         ParcheminDamage,
         ParcheminVie,
         ParcheminListen,
+        PierreDamage,
+        PierreCrit,
+        SakeSmall,
+        SakeBig,
+        PerleCrit,
+        PerleDamage,
+        PerleHealth
     }
 
     public Upgrade upgardeFunction;
