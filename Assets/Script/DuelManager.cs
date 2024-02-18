@@ -66,13 +66,13 @@ public class DuelManager : MonoBehaviour
 
         if (ennemyId>= room.ennemyList.Count)
         {
-            Destroy(ennemy.transform.parent.gameObject);
+            Destroy(ennemy.transform.gameObject);
             ennemyDead = true;
             CombatOver();
         }
         else if (room.ennemyList[ennemyId] == null)
         {
-            Destroy(ennemy.transform.parent.gameObject);
+            Destroy(ennemy.transform.gameObject);
             ennemyDead = true;
             CombatOver();
         }
