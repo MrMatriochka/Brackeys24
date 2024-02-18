@@ -11,7 +11,7 @@ public class UpgradesFunction : MonoBehaviour
     }
     public void ParcheminDamage(int damage)
     {
-        Player.instance.damage += damage;
+        Player.damage += damage;
     }
     public void ParcheminVie(int health)
     {

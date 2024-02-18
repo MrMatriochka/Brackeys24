@@ -466,7 +466,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e1aed16fcb724ba49a1d54e5858cbe17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1dc1f29d140ee6e40a93ac2248853aab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -510,7 +510,7 @@ RectTransform:
   m_Father: {fileID: 783212417}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -676,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &205126216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   whiteFlash: {fileID: 1671436314}
   redFlash: {fileID: 372044223}
   ennemy: {fileID: 121748359}
-  ennemyKatana: {fileID: 21300000, guid: e1aed16fcb724ba49a1d54e5858cbe17, type: 3}
+  ennemyKatana: {fileID: 21300000, guid: 1dc1f29d140ee6e40a93ac2248853aab, type: 3}
   ennemyKatana_attack: {fileID: 21300000, guid: 9b9afcea939832b458540befe018806e,
     type: 3}
   swordHit: {fileID: 8300000, guid: 69b0365a943c25e4d99a242fd68e549d, type: 3}
@@ -7222,8 +7222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 3
-  baseDamage: 0
-  damage: 1
+  baseDamage: 1
 --- !u!4 &712904060
 Transform:
   m_ObjectHideFlags: 0
@@ -13639,7 +13638,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1745746381}
   - component: {fileID: 1745746378}
-  - component: {fileID: 1745746380}
   - component: {fileID: 1745746379}
   m_Layer: 0
   m_Name: Main Camera  Perso
@@ -13743,14 +13741,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &1745746380
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745746377}
-  m_Enabled: 1
 --- !u!4 &1745746381
 Transform:
   m_ObjectHideFlags: 0
@@ -13799,7 +13789,7 @@ RectTransform:
   m_Father: {fileID: 1713417956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13933,7 +13923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2071692759
 MonoBehaviour:
   m_ObjectHideFlags: 0
