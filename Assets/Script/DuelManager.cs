@@ -34,6 +34,7 @@ public class DuelManager : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip carillon;
+    [SerializeField] ScreenShake shake;
 
     bool canBlock;
     int enemyAttack;
@@ -219,6 +220,7 @@ public class DuelManager : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             ennemy.sprite = ennemyStats.attackStance;
+            shake.shake = 0.2f;
             yield return new WaitForSeconds(flashTime);
             ennemy.sprite = ennemyStats.baseStance;
             yield return new WaitForSeconds(flashTime);
@@ -245,6 +247,7 @@ public class DuelManager : MonoBehaviour
                 enemyAttack = 0;
             }
             actionPerformed = true;
+            shake.shake = 0.2f;
             player.GetComponent<SpriteRenderer>().sprite = playerKatana_attack;
         }
     }
