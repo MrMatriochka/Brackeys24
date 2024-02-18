@@ -10,6 +10,7 @@ public class DoorManager : MonoBehaviour
     [SerializeField] GameObject fightScene;
     [SerializeField] RoomSetUp room;
     [SerializeField] Player player;
+    [SerializeField] AudioSource audioSource;
 
     [Header("Door")]
     [SerializeField] GameObject doorLeft;
@@ -150,13 +151,14 @@ public class DoorManager : MonoBehaviour
         fightScene.SetActive(true);
         yield return null;
     }
-
+    [SerializeField] AudioClip slash;
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && !actionChose)
         {
             silhouette.sprite = null;
             actionChose = true;
+            audioSource.PlayOneShot(slash);
             if (ennemyBehindDoor)
             {
                 room.ennemyList.Remove(room.ennemyList[0]);

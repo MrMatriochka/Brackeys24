@@ -35,6 +35,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] VisualEffect sparks;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
+    [SerializeField] AudioClip tickHeavy;
     [SerializeField] AudioClip carillon;
     [SerializeField] ScreenShake shake;
 
@@ -127,15 +128,14 @@ public class DuelManager : MonoBehaviour
             yield return new WaitForSeconds(sequence[i].timing / 2);
             switch (sequence[i].move)
             {
-                case EnnemyMoves.Pause:
-                    audioSource.PlayOneShot(tick);
-                    break;
                 case EnnemyMoves.LightAttack:
+                    audioSource.pitch = Random.Range(0.8f, 1.2f);
                     audioSource.PlayOneShot(tick);
                     whiteFlash.Play();
                     break;
                 case EnnemyMoves.HeavyAttack:
-                    audioSource.PlayOneShot(tick);
+                    audioSource.pitch = Random.Range(0.8f, 1.2f);
+                    audioSource.PlayOneShot(tickHeavy);
                     redFlash.Play();
                     break;
                 default:
@@ -143,6 +143,7 @@ public class DuelManager : MonoBehaviour
             }
             yield return new WaitForSeconds(sequence[i].timing / 2);
         }
+        audioSource.pitch = 1;
         audioSource.PlayOneShot(carillon);
         StartCoroutine(PlayerSequence());
         yield return null;
@@ -260,6 +261,7 @@ public class DuelManager : MonoBehaviour
             if (currentState == EnnemyMoves.Open)
             {
                 ennemyHealth -= Player.damage;
+                audioSource.PlayOneShot(swordHit);
                 StartCoroutine(Blood(bloodMatEnemy));
             }
             else
