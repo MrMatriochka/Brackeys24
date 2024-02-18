@@ -37,6 +37,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] AudioClip tick;
     [SerializeField] AudioClip tickHeavy;
     [SerializeField] AudioClip carillon;
+    [SerializeField] AudioClip slashMiss;
     [SerializeField] ScreenShake shake;
 
     bool canBlock;
@@ -129,12 +130,10 @@ public class DuelManager : MonoBehaviour
             switch (sequence[i].move)
             {
                 case EnnemyMoves.LightAttack:
-                    audioSource.pitch = Random.Range(0.8f, 1.2f);
                     audioSource.PlayOneShot(tick);
                     whiteFlash.Play();
                     break;
                 case EnnemyMoves.HeavyAttack:
-                    audioSource.pitch = Random.Range(0.8f, 1.2f);
                     audioSource.PlayOneShot(tickHeavy);
                     redFlash.Play();
                     break;
@@ -143,7 +142,6 @@ public class DuelManager : MonoBehaviour
             }
             yield return new WaitForSeconds(sequence[i].timing / 2);
         }
-        audioSource.pitch = 1;
         audioSource.PlayOneShot(carillon);
         StartCoroutine(PlayerSequence());
         yield return null;
@@ -210,6 +208,7 @@ public class DuelManager : MonoBehaviour
         }
         if (dodgingCD > 0 && currentState != EnnemyMoves.ResetAction)
         {
+            audioSource.PlayOneShot(slashMiss);
             dodgingCD--;
         }
         yield return new WaitForSeconds((actionTime - blockWindow) / 2);

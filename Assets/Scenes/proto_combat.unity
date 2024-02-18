@@ -2933,7 +2933,8 @@ MonoBehaviour:
   defaultPnjSilhouette: {fileID: 2100000, guid: 321c08c4cb60d50429852006e88999cf,
     type: 2}
   transiOver: 0
-  slash: {fileID: 8300000, guid: 69b0365a943c25e4d99a242fd68e549d, type: 3}
+  openDoor: {fileID: 8300000, guid: 9dead087afbf11d408ecb4cf5849b34d, type: 3}
+  slash: {fileID: 8300000, guid: dc0bdcb12bdcd1245871727750507ba9, type: 3}
 --- !u!4 &2071692761
 Transform:
   m_ObjectHideFlags: 0
@@ -3374,7 +3375,7 @@ PrefabInstance:
     - target: {fileID: 4956113001843861556, guid: 4509eac22c55b3b47878f97a6b5bbab6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6360347477450291679, guid: 4509eac22c55b3b47878f97a6b5bbab6,
         type: 3}
@@ -3610,6 +3611,11 @@ PrefabInstance:
       propertyPath: doorScene
       value: 
       objectReference: {fileID: 2071692758}
+    - target: {fileID: 4054246810163621255, guid: 514bddca05a1e174a9537dc27456e66d,
+        type: 3}
+      propertyPath: slashMiss
+      value: 
+      objectReference: {fileID: 8300000, guid: e95ca6fa4e3d57041b1589502a3e5b50, type: 3}
     - target: {fileID: 4054246810163621255, guid: 514bddca05a1e174a9537dc27456e66d,
         type: 3}
       propertyPath: tickHeavy

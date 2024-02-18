@@ -40,6 +40,8 @@ public class DoorManager : MonoBehaviour
 
     bool actionChose;
     [HideInInspector] public bool transiOver;
+    [SerializeField] AudioClip openDoor;
+
     void Start()
     {
         timer += Player.doorTimeBonus;
@@ -99,6 +101,7 @@ public class DoorManager : MonoBehaviour
                 Player.health -= room.ennemyList[0].damage;
             }
 
+            audioSource.PlayOneShot(openDoor);
             StartCoroutine(OpenDoorLeft());
             StartCoroutine(OpenDoorRight());
             StartCoroutine(FlashTransi());
@@ -173,7 +176,7 @@ public class DoorManager : MonoBehaviour
             foreach (GameObject door in doorBroke)
             {
                 door.GetComponent<Rigidbody>().useGravity = true;
-                door.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Impulse);
+                door.GetComponent<Rigidbody>().AddForce(Vector3.up* force, ForceMode.Impulse);
             }
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
