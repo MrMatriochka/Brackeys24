@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
   m_Name: TestItem
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Test Item
   sprite: {fileID: 21300000, guid: 370d10a2780e21847b5f64d5c3a6bbb0, type: 3}
-  description: 
+  description: Il test fort
   upgardeFunction: 2

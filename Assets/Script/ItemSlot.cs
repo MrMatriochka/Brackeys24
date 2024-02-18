@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class ItemSlot : MonoBehaviour
 {
-    public Image image;
+    [SerializeField] Image image;
+    [SerializeField] TMP_Text nameText;
+    [SerializeField] TMP_Text description;
+
     [HideInInspector] public Upgrades upgrade;
     UpgradesFunction functions;
     private void Start()
@@ -14,6 +17,8 @@ public class ItemSlot : MonoBehaviour
     }
     public void SetUp()
     {
+        nameText.text = upgrade.displayName;
+        description.text = upgrade.description;
         image.sprite = upgrade.sprite;
     }
     public void Buy()
