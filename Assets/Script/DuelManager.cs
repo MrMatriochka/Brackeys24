@@ -90,6 +90,7 @@ public class DuelManager : MonoBehaviour
         
     }
 
+    [SerializeField] GameObject gameOver;
     private void Update()
     {
         if(ennemyHealth <= 0 && !ennemyDead)
@@ -107,6 +108,15 @@ public class DuelManager : MonoBehaviour
                 ennemy.sprite = null;
                 CombatOver();
             }
+        }
+
+        if (Player.health <= 0 && !ennemyDead)
+        {
+            player.SetActive(false);
+            StopAllCoroutines();
+            StartCoroutine(Blood(bloodMatPlayer));
+            ennemyDead = true;
+            gameOver.SetActive(true);
         }
     }
     IEnumerator EnnemySequence()
@@ -331,17 +341,17 @@ public class DuelManager : MonoBehaviour
         nextRoomButton.SetActive(true);
     }
     [SerializeField] Transition transi;
+    [SerializeField] GameObject end;
     public void NextRoom()
     {
         WorldGeneration.playerProgression++;
         if(WorldGeneration.playerProgression == WorldGeneration.roomList.Length)
         {
-            print("gg");
-            //Fin du jeu
+            end.SetActive(true);
         }
         else
         {
-            transi.Out();
+            transi.Out(1);
         }
     }
 }

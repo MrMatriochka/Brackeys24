@@ -31,11 +31,11 @@ public class Transition : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != 0)doorManager.transiOver = true;
         yield return null;
     }
-    public void Out()
+    public void Out(int sceneToLoad)
     {
-        StartCoroutine(OutCoro());
+        StartCoroutine(OutCoro(sceneToLoad));
     }
-    IEnumerator OutCoro()
+    IEnumerator OutCoro(int sceneToLoad)
     {
         Vector3 Gotoposition = center.position;
         float elapsedTime = 0;
@@ -47,8 +47,7 @@ public class Transition : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        if (SceneManager.GetActiveScene().buildIndex != 0) SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        else SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneToLoad);
         yield return null;
     }
 }

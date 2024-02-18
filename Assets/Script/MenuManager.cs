@@ -8,10 +8,15 @@ public class MenuManager : MonoBehaviour
     public Transition transi;
     public void PlayGame()
     {
-        transi.Out();
+        transi.Out(1);
     }
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void GoToMenu()
+    {
+        transi.Out(0);
     }
 }
