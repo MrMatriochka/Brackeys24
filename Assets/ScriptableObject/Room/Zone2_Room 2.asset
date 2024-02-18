@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Zone2_Room 2
   m_EditorClassIdentifier: 
   type: 0
-  roomSpace: 1
+  roomSpace: 4
   ennemyNb: {x: 2, y: 4}
   possibleEnnemies:
   - {fileID: 11400000, guid: 4631e8f9fe0c38c40a9e09fca36b1de5, type: 2}
