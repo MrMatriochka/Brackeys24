@@ -29,7 +29,8 @@ public class DuelManager : MonoBehaviour
     [SerializeField] SpriteRenderer ennemy;
     [SerializeField] AudioClip swordHit;
     [SerializeField] AudioClip swordBlock;
-    [SerializeField] ParticleSystem blood;
+    [SerializeField] Material bloodMatPlayer;
+    [SerializeField] Material bloodMatEnemy;
     [SerializeField] VisualEffect sparks;
     AudioSource audioSource;
     [SerializeField] AudioClip tick;
@@ -95,6 +96,7 @@ public class DuelManager : MonoBehaviour
         {
             ennemyDead = true;
             StopAllCoroutines();
+            StartCoroutine(Blood(bloodMatEnemy));
             ennemyId++;
             if (ennemyId< room.ennemyList.Count)
             {
@@ -204,7 +206,7 @@ public class DuelManager : MonoBehaviour
             Player.health -= enemyAttack * ennemyStats.damage;
             UpdateUI(playerHealthUI, Player.health.ToString());
             audioSource.PlayOneShot(swordHit);
-            blood.Play();
+            StartCoroutine(Blood(bloodMatPlayer));
             enemyAttack = 0;
         }
         if (dodgingCD > 0 && currentState != EnnemyMoves.ResetAction)
@@ -213,6 +215,22 @@ public class DuelManager : MonoBehaviour
         }
         yield return new WaitForSeconds((actionTime - blockWindow) / 2);
         
+        yield return null;
+    }
+    IEnumerator Blood(Material bloodMat)
+    {
+        float Gotoposition = -1;
+        float elapsedTime = 0;
+        float waitTime = 0.2f;
+        float currentPos = 1;
+
+        while (elapsedTime < waitTime)
+        {
+            bloodMat.SetFloat("_Scroll" ,Mathf.Lerp(currentPos, Gotoposition, (elapsedTime / waitTime)));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        bloodMat.SetFloat("_Scroll", -1);
         yield return null;
     }
     IEnumerator EnemyKatanaStance()
@@ -244,6 +262,7 @@ public class DuelManager : MonoBehaviour
             if (currentState == EnnemyMoves.Open)
             {
                 ennemyHealth -= Player.damage;
+                StartCoroutine(Blood(bloodMatEnemy));
                 UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             }
             else
@@ -251,7 +270,7 @@ public class DuelManager : MonoBehaviour
                 Player.health -= enemyAttack * ennemyStats.damage;
                 UpdateUI(playerHealthUI, Player.health.ToString());
                 audioSource.PlayOneShot(swordHit);
-                blood.Play();
+                StartCoroutine(Blood(bloodMatPlayer));
                 enemyAttack = 0;
             }
             actionPerformed = true;
