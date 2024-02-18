@@ -24,8 +24,8 @@ public class DuelManager : MonoBehaviour
 
     [Header("Ennemy Feedback")]
     [SerializeField] float flashTime;
-    [SerializeField] GameObject whiteFlash;
-    [SerializeField] GameObject redFlash;
+    [SerializeField] VisualEffect whiteFlash;
+    [SerializeField] VisualEffect redFlash;
     [SerializeField] SpriteRenderer ennemy;
     [SerializeField] AudioClip swordHit;
     [SerializeField] AudioClip swordBlock;
@@ -122,11 +122,11 @@ public class DuelManager : MonoBehaviour
                     break;
                 case EnnemyMoves.LightAttack:
                     audioSource.PlayOneShot(tick);
-                    StartCoroutine(Flash(whiteFlash, 1));
+                    whiteFlash.Play();
                     break;
                 case EnnemyMoves.HeavyAttack:
                     audioSource.PlayOneShot(tick);
-                    StartCoroutine(Flash(redFlash, 1));
+                    redFlash.Play();
                     break;
                 default:
                     break;
@@ -135,18 +135,6 @@ public class DuelManager : MonoBehaviour
         }
         audioSource.PlayOneShot(carillon);
         StartCoroutine(PlayerSequence());
-        yield return null;
-    }
-
-    IEnumerator Flash(GameObject flash, int num)
-    {
-        for (int i = 0; i < num; i++)
-        {
-            flash.SetActive(flash);
-            yield return new WaitForSeconds(flashTime);
-            flash.SetActive(false);
-            yield return new WaitForSeconds(flashTime);
-        }
         yield return null;
     }
 
