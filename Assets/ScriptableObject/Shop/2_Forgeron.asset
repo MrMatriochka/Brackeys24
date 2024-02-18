@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f35417319738f4185cf743cee92a29, type: 3}
   m_Name: 2_Forgeron
   m_EditorClassIdentifier: 
-  type: 0
-  itemList: 
+  type: 4
+  sprite: {fileID: 21300000, guid: 101fc8e417b32944fa441f4a7adb970b, type: 3}
+  itemList:
+  - {fileID: 11400000, guid: 92ffe7bad517c1844bcd3d588767eebd, type: 2}
+  - {fileID: 11400000, guid: 8685d471cd99e4e429aca12addda2d61, type: 2}

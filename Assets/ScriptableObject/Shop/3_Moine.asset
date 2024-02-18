@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f35417319738f4185cf743cee92a29, type: 3}
   m_Name: 3_Moine
   m_EditorClassIdentifier: 
-  type: 0
-  itemList: 
+  type: 5
+  sprite: {fileID: 21300000, guid: fc686620f37b8c444b4f3a826c04a0d3, type: 3}
+  itemList:
+  - {fileID: 11400000, guid: 5901421e9bcea30468d55190f2787a48, type: 2}
+  - {fileID: 11400000, guid: 22be6ff72b6437c45b40e225e2af2266, type: 2}
+  - {fileID: 11400000, guid: c8d383281c8b92d45b170d3ec88493bd, type: 2}
+  - {fileID: 11400000, guid: ad2a86a89cfb49b4eb0336c7242b68af, type: 2}
+  - {fileID: 11400000, guid: 9467850a10c288e49bb0b38e034d6a46, type: 2}
+  - {fileID: 11400000, guid: a47028b2762055a48baba1a606a0903a, type: 2}
+  - {fileID: 11400000, guid: d792e00543f084247a0fec19270b7bde, type: 2}

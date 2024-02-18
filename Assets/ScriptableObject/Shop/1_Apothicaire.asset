@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: 1_Apothicaire
   m_EditorClassIdentifier: 
   type: 3
-  itemList: []
+  sprite: {fileID: 21300000, guid: d3d89d547a72f2d47a5081e9a0e324da, type: 3}
+  itemList:
+  - {fileID: 11400000, guid: 6b17e0437e9cb4844bea842037481c92, type: 2}
+  - {fileID: 11400000, guid: 102766d4e6150dc4b92e7b4d5748318a, type: 2}
