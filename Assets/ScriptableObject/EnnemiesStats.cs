@@ -12,6 +12,7 @@ public class EnnemiesStats : ScriptableObject
     [Header("Fight")]
     public Sprite baseStance;
     public Sprite attackStance;
+    public Sprite heavyStance;
 
     [Header("Door")]
     public AudioClip[] sfx;

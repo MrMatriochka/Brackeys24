@@ -171,13 +171,13 @@ public class DuelManager : MonoBehaviour
                 case EnnemyMoves.LightAttack:
                     enemyAttack = 1;
                     yield return new WaitForSeconds(action.timing / 2);
-                    StartCoroutine(EnemyKatanaStance(1));
+                    StartCoroutine(EnemyKatanaStance());
                     break;
                 case EnnemyMoves.HeavyAttack:
                     //currentState = EnnemyMoves.HeavyAttack;
                     enemyAttack = 3;
                     yield return new WaitForSeconds(action.timing / 2);
-                    StartCoroutine(EnemyKatanaStance(1));
+                    StartCoroutine(EnemyKatanaHeavyStance());
                     break;
                 default:
                     yield return new WaitForSeconds(action.timing / 2);
@@ -215,19 +215,27 @@ public class DuelManager : MonoBehaviour
         
         yield return null;
     }
-    IEnumerator EnemyKatanaStance(int num)
+    IEnumerator EnemyKatanaStance()
     {
-        for (int i = 0; i < num; i++)
-        {
             ennemy.sprite = ennemyStats.attackStance;
             shake.shake = 0.2f;
             yield return new WaitForSeconds(flashTime);
             ennemy.sprite = ennemyStats.baseStance;
             yield return new WaitForSeconds(flashTime);
-        }
+
         yield return null;
     }
-
+    IEnumerator EnemyKatanaHeavyStance()
+    {
+        ennemy.sprite = ennemyStats.heavyStance;
+        yield return new WaitForSeconds(flashTime);
+        ennemy.sprite = ennemyStats.attackStance;
+        yield return new WaitForSeconds(flashTime);
+        shake.shake = 0.2f;
+        ennemy.sprite = ennemyStats.baseStance;
+        yield return new WaitForSeconds(flashTime);
+        yield return null;
+    }
     //player actions
     public void Attack(InputAction.CallbackContext context)
     {
