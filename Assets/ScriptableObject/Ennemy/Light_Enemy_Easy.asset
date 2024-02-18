@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 1
   sequences:
   - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
-  baseStance: {fileID: 0}
-  attackStance: {fileID: 0}
+  baseStance: {fileID: 21300000, guid: 1dc1f29d140ee6e40a93ac2248853aab, type: 3}
+  attackStance: {fileID: 21300000, guid: 9b9afcea939832b458540befe018806e, type: 3}
   silhouetteDecal: {fileID: 2100000, guid: 7f582e3ca3872cd4db85c24dd7629fd3, type: 2}
   sfx: []

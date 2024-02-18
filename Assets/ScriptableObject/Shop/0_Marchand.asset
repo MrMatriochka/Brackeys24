@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 0_Marchand
   m_EditorClassIdentifier: 
   type: 1
+  sprite: {fileID: 21300000, guid: f3afa2873756e2847b1674eff3923246, type: 3}
   itemList:
   - {fileID: 11400000, guid: b3ec324a969ac5041b8cfc6b586c3a39, type: 2}

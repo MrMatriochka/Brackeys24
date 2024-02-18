@@ -6,6 +6,6 @@ using UnityEngine;
 public class PnjShop : ScriptableObject
 {
     public RoomStats.Pnj type;
-
+    public Sprite sprite;
     public Upgrades[] itemList;
 }

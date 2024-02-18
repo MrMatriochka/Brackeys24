@@ -26,8 +26,8 @@ public class DuelManager : MonoBehaviour
     [SerializeField] GameObject whiteFlash;
     [SerializeField] GameObject redFlash;
     [SerializeField] SpriteRenderer ennemy;
-    [SerializeField] Sprite ennemyKatana;
-    [SerializeField] Sprite ennemyKatana_attack;
+    //[SerializeField] Sprite ennemyKatana;
+    //[SerializeField] Sprite ennemyKatana_attack;
     [SerializeField] AudioClip swordHit;
     [SerializeField] AudioClip swordBlock;
     [SerializeField] ParticleSystem blood;
@@ -66,13 +66,13 @@ public class DuelManager : MonoBehaviour
 
         if (ennemyId>= room.ennemyList.Count)
         {
-            Destroy(ennemy.transform.gameObject);
+            ennemy.sprite = null;
             ennemyDead = true;
             CombatOver();
         }
         else if (room.ennemyList[ennemyId] == null)
         {
-            Destroy(ennemy.transform.gameObject);
+            ennemy.sprite = null;
             ennemyDead = true;
             CombatOver();
         }
@@ -102,7 +102,7 @@ public class DuelManager : MonoBehaviour
             }
             else
             {
-                Destroy(ennemy.transform.gameObject);
+                ennemy.sprite = null;
                 CombatOver();
             }
         }
@@ -219,9 +219,9 @@ public class DuelManager : MonoBehaviour
     {
         for (int i = 0; i < num; i++)
         {
-            ennemy.sprite = ennemyKatana_attack;
+            ennemy.sprite = ennemyStats.attackStance;
             yield return new WaitForSeconds(flashTime);
-            ennemy.sprite = ennemyKatana;
+            ennemy.sprite = ennemyStats.baseStance;
             yield return new WaitForSeconds(flashTime);
         }
         yield return null;
