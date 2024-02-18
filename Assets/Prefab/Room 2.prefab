@@ -1858,6 +1858,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 1854914082594665074, guid: 87ccfc90e176b0f4680c5fb28a45ef58,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
+    - target: {fileID: 3390654542582953542, guid: 87ccfc90e176b0f4680c5fb28a45ef58,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
+    - target: {fileID: 3422709202645154278, guid: 87ccfc90e176b0f4680c5fb28a45ef58,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
+    - target: {fileID: 4885617963686811972, guid: 87ccfc90e176b0f4680c5fb28a45ef58,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2687,11 +2707,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8536456379676995262, guid: d1d8028f033cdbe42872fba8fa86c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
+    - target: {fileID: -6258589444005972572, guid: d1d8028f033cdbe42872fba8fa86c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
+    - target: {fileID: -1540346658058728417, guid: d1d8028f033cdbe42872fba8fa86c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
     - target: {fileID: 919132149155446097, guid: d1d8028f033cdbe42872fba8fa86c3d9,
         type: 3}
       propertyPath: m_Name
       value: Door1MV1Cut
       objectReference: {fileID: 0}
+    - target: {fileID: 8164524385821743416, guid: d1d8028f033cdbe42872fba8fa86c3d9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7af18109177fd624d9f22146619bdf78, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
