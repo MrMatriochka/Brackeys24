@@ -1352,7 +1352,36 @@ MonoBehaviour:
   zoneCompo:
   - roomNb: 2
     possibleRooms:
-    - {fileID: 11400000, guid: 88c9f28b815fe404e89edb11fe6234ef, type: 2}
+    - {fileID: 11400000, guid: 0c01671a0d4aa1147937331439a18e96, type: 2}
+    - {fileID: 11400000, guid: 5cbaac5d5bb8e174c977a67dea371a71, type: 2}
+  - roomNb: 1
+    possibleRooms:
+    - {fileID: 11400000, guid: 6c93584f87c1ed449bf56a4256a825a9, type: 2}
+  - roomNb: 2
+    possibleRooms:
+    - {fileID: 11400000, guid: 24dac109f1be23e48a8035e80f5a9fab, type: 2}
+    - {fileID: 11400000, guid: 64bea4836f74f1c4989da31bf2cfeaf7, type: 2}
+  - roomNb: 1
+    possibleRooms:
+    - {fileID: 11400000, guid: e578abd42c9656c45983b2780cec1800, type: 2}
+  - roomNb: 2
+    possibleRooms:
+    - {fileID: 11400000, guid: b8a96987c885c3b45a716827deff4dc4, type: 2}
+    - {fileID: 11400000, guid: c12387295ebdd554d9aa4ca98f3846d0, type: 2}
+  - roomNb: 2
+    possibleRooms:
+    - {fileID: 11400000, guid: b085bc18996c71b43a924e7e6c897bf7, type: 2}
+  - roomNb: 2
+    possibleRooms:
+    - {fileID: 11400000, guid: 72fdfa8610942bf4a9eaa738889bbf53, type: 2}
+    - {fileID: 11400000, guid: 5401d9f8e043c5a4697d159940e571dd, type: 2}
+  - roomNb: 2
+    possibleRooms:
+    - {fileID: 11400000, guid: fc98f150637c7e84480a97442186f091, type: 2}
+    - {fileID: 11400000, guid: ff95985b29d0b3143a4ac6321a23faba, type: 2}
+  - roomNb: 1
+    possibleRooms:
+    - {fileID: 11400000, guid: 45779200cea39f941bcf69e507ce9d47, type: 2}
 --- !u!1 &749503184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5278119988334306357, guid: d1d8028f033cdbe42872fba8fa86c3d9,
