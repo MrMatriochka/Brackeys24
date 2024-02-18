@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f547be2f4c28324daf37e5fb47e1efb, type: 3}
   m_Name: Heavy_Enemy_Medium
   m_EditorClassIdentifier: 
-  health: 1
+  health: 6
   damage: 1
   sequences:
+  - {fileID: 11400000, guid: 92ff4e99ddd44804385a9c3b9ca51e84, type: 2}
+  - {fileID: 11400000, guid: a3dea64c44a749b469cbbac7d5ae3678, type: 2}
   - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
-  baseStance: {fileID: 0}
-  attackStance: {fileID: 0}
-  silhouetteDecal: {fileID: 2100000, guid: 7f582e3ca3872cd4db85c24dd7629fd3, type: 2}
+  - {fileID: 11400000, guid: 7579200f830ad7a4689b49c453331a75, type: 2}
+  - {fileID: 11400000, guid: 125722ee0b49c9f4cb14ad8d6bf2f40c, type: 2}
+  - {fileID: 11400000, guid: 152c47272ecd1984e8f03bbf2b2bc50f, type: 2}
+  baseStance: {fileID: 21300000, guid: 1dc1f29d140ee6e40a93ac2248853aab, type: 3}
+  attackStance: {fileID: 21300000, guid: 9b9afcea939832b458540befe018806e, type: 3}
+  heavyStance: {fileID: 21300000, guid: e1aed16fcb724ba49a1d54e5858cbe17, type: 3}
   sfx: []

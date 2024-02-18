@@ -15,8 +15,11 @@ MonoBehaviour:
   health: 1
   damage: 1
   sequences:
-  - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
-  baseStance: {fileID: 21300000, guid: 1dc1f29d140ee6e40a93ac2248853aab, type: 3}
-  attackStance: {fileID: 21300000, guid: 9b9afcea939832b458540befe018806e, type: 3}
-  heavyStance: {fileID: 21300000, guid: e1aed16fcb724ba49a1d54e5858cbe17, type: 3}
+  - {fileID: 11400000, guid: 49a00cc12231a3c4f9267c9e8b175ff8, type: 2}
+  - {fileID: 11400000, guid: c18f2b87eff83fb4a9222fdf71f79eab, type: 2}
+  - {fileID: 11400000, guid: c9e439c87a9b53144b3fa1941e302aed, type: 2}
+  - {fileID: 11400000, guid: 26737f5c00efade478b0860e240af98c, type: 2}
+  baseStance: {fileID: 21300000, guid: 7ac6834b07a05b8448253b71843b1e87, type: 3}
+  attackStance: {fileID: 21300000, guid: ff4dc6491753dd04d8042301871a2dcd, type: 3}
+  heavyStance: {fileID: 21300000, guid: ff4dc6491753dd04d8042301871a2dcd, type: 3}
   sfx: []
