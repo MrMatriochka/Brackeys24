@@ -15,6 +15,8 @@ public class DoorManager : MonoBehaviour
     [Header("Door")]
     [SerializeField] GameObject doorLeft;
     [SerializeField] GameObject doorRight;
+    [SerializeField] GameObject[] doorBroke;
+    [SerializeField] float force;
     [SerializeField] float doorOpeningTime;
     [SerializeField] float doorZoom;
 
@@ -168,8 +170,11 @@ public class DoorManager : MonoBehaviour
                 WorldGeneration.pnjStatus[room.pnj] = false;
                 room.pnj = RoomStats.Pnj.None;
             }
-            doorLeft.SetActive(false);
-            doorRight.SetActive(false);
+            foreach (GameObject door in doorBroke)
+            {
+                door.GetComponent<Rigidbody>().useGravity = true;
+                door.GetComponent<Rigidbody>().AddForce(Vector3.forward * force, ForceMode.Impulse);
+            }
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
             StartCoroutine(FlashTransi());
