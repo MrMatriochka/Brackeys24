@@ -330,6 +330,7 @@ public class DuelManager : MonoBehaviour
         }
         nextRoomButton.SetActive(true);
     }
+    [SerializeField] Transition transi;
     public void NextRoom()
     {
         WorldGeneration.playerProgression++;
@@ -340,7 +341,7 @@ public class DuelManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            transi.Out();
         }
     }
 }

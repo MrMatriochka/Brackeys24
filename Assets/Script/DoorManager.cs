@@ -36,10 +36,13 @@ public class DoorManager : MonoBehaviour
     [SerializeField] Material defaultPnjSilhouette;
 
     bool actionChose;
+    [HideInInspector] public bool transiOver;
     void Start()
     {
         timer += Player.doorTimeBonus;
+        timerSlider.value = timer;
         timerSlider.maxValue = timer;
+        timerSliderBis.value = timer;
         timerSliderBis.maxValue = timer;
         Init();
     }
@@ -47,7 +50,7 @@ public class DoorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer > 0)
+        if (timer > 0 && transiOver)
         {
             timer -= Time.deltaTime*timerMultiplier;
             timerSlider.value = timer;
