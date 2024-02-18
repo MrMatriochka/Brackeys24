@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public static int health;
     public static int maxhealth;
     [SerializeField] int baseDamage;
-    public int damage;
+    public static int damage;
     //public int coins;
     public static float critRate = 0;
     public static float paryBonus = 0;

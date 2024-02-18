@@ -25,8 +25,9 @@ public class DuelManager : MonoBehaviour
     [SerializeField] float flashTime;
     [SerializeField] GameObject whiteFlash;
     [SerializeField] GameObject redFlash;
-    [SerializeField] GameObject ennemyKatana;
-    [SerializeField] GameObject ennemyKatana_attack;
+    [SerializeField] SpriteRenderer ennemy;
+    [SerializeField] Sprite ennemyKatana;
+    [SerializeField] Sprite ennemyKatana_attack;
     [SerializeField] AudioClip swordHit;
     [SerializeField] AudioClip swordBlock;
     [SerializeField] ParticleSystem blood;
@@ -46,9 +47,9 @@ public class DuelManager : MonoBehaviour
     [Header("Player Stances")]
     [SerializeField] GameObject player;
     Vector3 playerInitialPos;
-    [SerializeField] GameObject playerKatana;
-    [SerializeField] GameObject playerKatana_attack;
-    [SerializeField] GameObject playerKatana_block;
+    [SerializeField] Sprite playerKatana;
+    [SerializeField] Sprite playerKatana_attack;
+    [SerializeField] Sprite playerKatana_block;
     [SerializeField] float dodgeDistance;
 
     [Header("UI")]
@@ -65,13 +66,13 @@ public class DuelManager : MonoBehaviour
 
         if (ennemyId>= room.ennemyList.Count)
         {
-            Destroy(ennemyKatana.transform.parent.gameObject);
+            Destroy(ennemy.transform.parent.gameObject);
             ennemyDead = true;
             CombatOver();
         }
         else if (room.ennemyList[ennemyId] == null)
         {
-            Destroy(ennemyKatana.transform.parent.gameObject);
+            Destroy(ennemy.transform.parent.gameObject);
             ennemyDead = true;
             CombatOver();
         }
@@ -101,7 +102,7 @@ public class DuelManager : MonoBehaviour
             }
             else
             {
-                Destroy(ennemyKatana.transform.parent.gameObject);
+                Destroy(ennemy.transform.parent.gameObject);
                 CombatOver();
             }
         }
@@ -160,8 +161,7 @@ public class DuelManager : MonoBehaviour
                 dodging = false;
             }
             actionPerformed = false;
-            playerKatana.SetActive(true);
-            playerKatana_block.SetActive(false);
+            player.GetComponent<SpriteRenderer>().sprite = playerKatana;
             player.transform.position = playerInitialPos;
             enemyAttack = 0;
             StartCoroutine(InputActionWindow(action.timing));
@@ -219,11 +219,9 @@ public class DuelManager : MonoBehaviour
     {
         for (int i = 0; i < num; i++)
         {
-            ennemyKatana.SetActive(false);
-            ennemyKatana_attack.SetActive(true);
+            ennemy.sprite = ennemyKatana_attack;
             yield return new WaitForSeconds(flashTime);
-            ennemyKatana.SetActive(true);
-            ennemyKatana_attack.SetActive(false);
+            ennemy.sprite = ennemyKatana;
             yield return new WaitForSeconds(flashTime);
         }
         yield return null;
@@ -236,7 +234,7 @@ public class DuelManager : MonoBehaviour
         {
             if (currentState == EnnemyMoves.Open)
             {
-                ennemyHealth -= playerStats.damage;
+                ennemyHealth -= Player.damage;
                 UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             }
             else
@@ -248,6 +246,7 @@ public class DuelManager : MonoBehaviour
                 enemyAttack = 0;
             }
             actionPerformed = true;
+            player.GetComponent<SpriteRenderer>().sprite = playerKatana_attack;
         }
     }
     public void Block(InputAction.CallbackContext context)
@@ -262,8 +261,7 @@ public class DuelManager : MonoBehaviour
                 sparks.Play();
             }
             actionPerformed = true;
-            playerKatana.SetActive(false);
-            playerKatana_block.SetActive(true);
+            player.GetComponent<SpriteRenderer>().sprite = playerKatana_block;
         }        
     }
     public void Dodge(InputAction.CallbackContext context)
@@ -291,14 +289,14 @@ public class DuelManager : MonoBehaviour
 
     IEnumerator NextEnnemy()
     {
-        ennemyKatana.transform.parent.gameObject.SetActive(false);
+        ennemy.transform.parent.gameObject.SetActive(false);
         yield return new WaitForSeconds(timeBetweenEnnemies);  
         ennemyStats = room.ennemyList[ennemyId];
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         ennemyHealth = ennemyStats.health;
         UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
         ennemyDead = false;
-        ennemyKatana.transform.parent.gameObject.SetActive(true);
+        ennemy.transform.parent.gameObject.SetActive(true);
 
         StartCoroutine(EnnemySequence());
         yield return null;
