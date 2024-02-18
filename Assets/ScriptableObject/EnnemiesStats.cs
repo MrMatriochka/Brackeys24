@@ -14,6 +14,5 @@ public class EnnemiesStats : ScriptableObject
     public Sprite attackStance;
 
     [Header("Door")]
-    public Material silhouetteDecal;
     public AudioClip[] sfx;
 }

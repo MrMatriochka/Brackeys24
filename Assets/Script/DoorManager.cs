@@ -32,7 +32,7 @@ public class DoorManager : MonoBehaviour
     [Header("BehindDoor")]
     bool ennemyBehindDoor;
     bool pnjBehindDoor;
-    [SerializeField] DecalProjector silhouette;
+    [SerializeField] SpriteRenderer silhouette;
     [SerializeField] Material defaultPnjSilhouette;
 
     bool actionChose;
@@ -56,6 +56,7 @@ public class DoorManager : MonoBehaviour
         if(timer <= 0)
         {
             actionChose = true;
+            silhouette.sprite = null;
             timerSlider.gameObject.SetActive(false);
             timerSliderBis.gameObject.SetActive(false);
             StartCoroutine(OpenDoorLeft());
@@ -70,13 +71,14 @@ public class DoorManager : MonoBehaviour
         {
             case RoomSetUp.RoomSpaces.Ennemy:
                 ennemyBehindDoor = true;
-                silhouette.material = room.ennemyList[0].silhouetteDecal;
+                silhouette.sprite = room.ennemyList[0].baseStance;
                 break;
             case RoomSetUp.RoomSpaces.PNJ:
                 pnjBehindDoor = true;
-                silhouette.material = defaultPnjSilhouette;
+                silhouette.sprite = room.pnjSprite;
                 break;
             default:
+                silhouette.sprite = null;
                 break;
         }
     }
@@ -84,6 +86,7 @@ public class DoorManager : MonoBehaviour
     {
         if (context.performed  && !actionChose)
         {
+            silhouette.sprite = null;
             actionChose = true;
             if (ennemyBehindDoor)
             {
@@ -149,6 +152,7 @@ public class DoorManager : MonoBehaviour
     {
         if (context.performed && !actionChose)
         {
+            silhouette.sprite = null;
             actionChose = true;
             if (ennemyBehindDoor)
             {

@@ -8,6 +8,7 @@ public class RoomSetUp : MonoBehaviour
     [HideInInspector] public RoomSpaces[] roomSpaceList;
     [HideInInspector]public List<EnnemiesStats> ennemyList;
     [HideInInspector] public RoomStats.Pnj pnj;
+    [HideInInspector] public Sprite pnjSprite;
     [HideInInspector] public RoomStats.RoomType type;
 
     public enum RoomSpaces
@@ -46,6 +47,7 @@ public class RoomSetUp : MonoBehaviour
         if(pnj != RoomStats.Pnj.None)
         {
             roomSpaceList[room.roomSpace - 1] = RoomSpaces.PNJ;
+            GetPnjSprite();
         }
         ShuffleSlot(roomSpaceList);
     }
@@ -57,6 +59,19 @@ public class RoomSetUp : MonoBehaviour
             int r = Random.Range(t, roomSpaceList.Length);
             roomSpaceList[t] = roomSpaceList[r];
             roomSpaceList[r] = tmp;
+        }
+    }
+
+    [SerializeField] PnjShop[] allShopType;
+    void GetPnjSprite()
+    {
+        foreach (PnjShop shop in allShopType)
+        {
+            if (shop.type == pnj)
+            {
+                pnjSprite = shop.sprite;
+                return;
+            }
         }
     }
 }
