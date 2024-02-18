@@ -13,7 +13,7 @@ public class ItemSlot : MonoBehaviour
     UpgradesFunction functions;
     private void Start()
     {
-        functions = transform.parent.GetComponent<UpgradesFunction>();
+        functions = transform.parent.parent.GetComponent<UpgradesFunction>();
     }
     public void SetUp()
     {
