@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
-  m_Name: Perle_Regen_Vie
+  m_Name: Perle_Damage_Life
   m_EditorClassIdentifier: 
-  name: Perl of Life
-  sprite: {fileID: 0}
-  description: 
+  displayName: Beads of shogun
+  sprite: {fileID: 21300000, guid: 05e3b87e43c784a45bc8ff6542d1122e, type: 3}
+  description: -Parry reduce <br> -HP +3
+  upgardeFunction: 10

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
   m_Name: Pierre_Degats
   m_EditorClassIdentifier: 
-  name: Big whetstone
-  sprite: {fileID: 0}
-  description: 
+  displayName: Small whetstone
+  sprite: {fileID: 21300000, guid: 8972ff1c80ad4384fb9f1c7794c06317, type: 3}
+  description: -Damage +1
+  upgardeFunction: 4

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
   m_Name: Parchemin_Porte
   m_EditorClassIdentifier: 
-  name: The way of the Ninja
-  sprite: {fileID: 0}
-  description: 
+  displayName: Way of ninja
+  sprite: {fileID: 21300000, guid: 9eff76d372139174388cd919f194c47e, type: 3}
+  description: -Listening time +5s
+  upgardeFunction: 3

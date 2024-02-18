@@ -18,7 +18,7 @@ public class ItemSlot : MonoBehaviour
     public void SetUp()
     {
         nameText.text = upgrade.displayName;
-        description.text = upgrade.description;
+        description.text = upgrade.description.Replace("<br>", "\n");
         image.sprite = upgrade.sprite;
     }
     public void Buy()

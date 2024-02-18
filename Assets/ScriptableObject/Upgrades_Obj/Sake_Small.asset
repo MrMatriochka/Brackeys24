@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
   m_Name: Sake_Small
   m_EditorClassIdentifier: 
-  name: Small Sake
-  sprite: {fileID: 0}
-  description: 
+  displayName: Bottle of sake
+  sprite: {fileID: 21300000, guid: 522ec7dbddd646546a9992b8b95d283a, type: 3}
+  description: -Heal 1 hp
+  upgardeFunction: 6

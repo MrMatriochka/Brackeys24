@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0d5194e6b0a4eb6c0ba012c2e2c4, type: 3}
   m_Name: Parchemin_Degat
   m_EditorClassIdentifier: 
-  name: The way of the ogre
-  sprite: {fileID: 0}
-  description: 
+  displayName: Way of samourai
+  sprite: {fileID: 21300000, guid: 427ec5315118b324d9a0eefd0eaf30c1, type: 3}
+  description: -Damage +1
+  upgardeFunction: 1
