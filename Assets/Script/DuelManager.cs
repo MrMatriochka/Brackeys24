@@ -102,7 +102,7 @@ public class DuelManager : MonoBehaviour
             }
             else
             {
-                Destroy(ennemy.transform.parent.gameObject);
+                Destroy(ennemy.transform.gameObject);
                 CombatOver();
             }
         }
