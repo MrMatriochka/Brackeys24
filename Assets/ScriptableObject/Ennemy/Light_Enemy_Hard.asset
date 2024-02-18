@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f547be2f4c28324daf37e5fb47e1efb, type: 3}
+  m_Name: Light_Enemy_Hard
+  m_EditorClassIdentifier: 
+  health: 1
+  damage: 1
+  sequences:
+  - {fileID: 11400000, guid: b3553626fddd3ce4a95cd55c4613425b, type: 2}
+  baseStance: {fileID: 0}
+  attackStance: {fileID: 0}
+  silhouetteDecal: {fileID: 2100000, guid: 7f582e3ca3872cd4db85c24dd7629fd3, type: 2}
+  sfx: []
