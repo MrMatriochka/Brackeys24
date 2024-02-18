@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using EnnemyStruct;
@@ -12,7 +13,7 @@ public class DuelManager : MonoBehaviour
     [SerializeField] GameObject doorScene;
     EnnemiesStats ennemyStats;
     int ennemyId = 0;
-    Player playerStats;
+
     [SerializeField] RoomSetUp room;
     [SerializeField] Transform roomSpawnPoint;
     [SerializeField] float timeBetweenEnnemies;
@@ -54,16 +55,16 @@ public class DuelManager : MonoBehaviour
     [SerializeField] float dodgeDistance;
 
     [Header("UI")]
-    [SerializeField] TMP_Text playerHealthUI;
-    [SerializeField] TMP_Text ennemyHealthUI;
+    [SerializeField] Slider playerHealthUILeft;
+    [SerializeField] Slider playerHealthUIRight;
+
     void Start()
     {
         doorScene.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         Instantiate(room.room.decor, roomSpawnPoint.position, room.room.decor.transform.rotation);
-        playerStats = Player.instance;
         blockWindow += Player.paryBonus;
-        UpdateUI(playerHealthUI, Player.health.ToString());
+        UpdateHP();
 
         if (ennemyId>= room.ennemyList.Count)
         {
@@ -84,7 +85,6 @@ public class DuelManager : MonoBehaviour
             playerInitialPos = player.transform.position;
             ennemyHealth = ennemyStats.health;
             
-            UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             StartCoroutine(EnnemySequence());
         }
         
@@ -192,7 +192,7 @@ public class DuelManager : MonoBehaviour
         if (enemyAttack > 0)
         {
             Player.health -= enemyAttack * ennemyStats.damage;
-            UpdateUI(playerHealthUI, Player.health.ToString());
+            UpdateHP();
             audioSource.PlayOneShot(swordHit);
             StartCoroutine(Blood(bloodMatPlayer));
             enemyAttack = 0;
@@ -251,12 +251,11 @@ public class DuelManager : MonoBehaviour
             {
                 ennemyHealth -= Player.damage;
                 StartCoroutine(Blood(bloodMatEnemy));
-                UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
             }
             else
             {
                 Player.health -= enemyAttack * ennemyStats.damage;
-                UpdateUI(playerHealthUI, Player.health.ToString());
+                UpdateHP();
                 audioSource.PlayOneShot(swordHit);
                 StartCoroutine(Blood(bloodMatPlayer));
                 enemyAttack = 0;
@@ -299,11 +298,13 @@ public class DuelManager : MonoBehaviour
         }
     }
 
-    void UpdateUI(TMP_Text ui, string newText)
+    public void UpdateHP()
     {
-        ui.text = newText;
+        playerHealthUILeft.maxValue = Player.maxhealth;
+        playerHealthUILeft.value = Player.health;
+        playerHealthUIRight.maxValue = Player.maxhealth;
+        playerHealthUIRight.value = Player.health;
     }
-
     IEnumerator NextEnnemy()
     {
         ennemy.transform.parent.gameObject.SetActive(false);
@@ -311,7 +312,6 @@ public class DuelManager : MonoBehaviour
         ennemyStats = room.ennemyList[ennemyId];
         sequence = ennemyStats.sequences[Random.Range(0, ennemyStats.sequences.Length)].sequence;
         ennemyHealth = ennemyStats.health;
-        UpdateUI(ennemyHealthUI, ennemyHealth.ToString());
         ennemyDead = false;
         ennemy.transform.parent.gameObject.SetActive(true);
 

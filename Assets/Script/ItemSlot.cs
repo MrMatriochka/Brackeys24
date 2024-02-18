@@ -11,6 +11,8 @@ public class ItemSlot : MonoBehaviour
 
     [HideInInspector] public Upgrades upgrade;
     UpgradesFunction functions;
+
+    [SerializeField] DuelManager duel;
     private void Start()
     {
         functions = transform.parent.parent.GetComponent<UpgradesFunction>();
@@ -66,5 +68,6 @@ public class ItemSlot : MonoBehaviour
                 break;
         }
         transform.parent.gameObject.SetActive(false);
+        duel.UpdateHP();
     }
 }
