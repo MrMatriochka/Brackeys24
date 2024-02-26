@@ -171,7 +171,7 @@ public class DoorManager : MonoBehaviour
             if (pnjBehindDoor)
             {
                 WorldGeneration.pnjStatus[room.pnj] = false;
-                room.pnj = RoomStats.Pnj.None;
+                room.pnj = null;
             }
             foreach (GameObject door in doorBroke)
             {

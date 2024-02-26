@@ -1131,8 +1131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 594875860}
-  - component: {fileID: 594875859}
   - component: {fileID: 594875861}
+  - component: {fileID: 594875859}
+  - component: {fileID: 594875862}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -1263,6 +1264,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a13b8e58757e6149a5104b63a27eba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aS1: {fileID: 594875859}
+  aS2: {fileID: 594875862}
+  transiTime: 0.5
+  defaultVolume: 1
+--- !u!82 &594875862
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594875858}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6c94d95dd8ccd9942b9d7ede20f22478, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &712904058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHealth: 10
   baseDamage: 1
+  baseCritMultiplier: 2
+  baseCritRate: 0.1
 --- !u!4 &712904060
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,17 +1429,9 @@ MonoBehaviour:
   room: {fileID: 0}
   roomSpaceList: 
   ennemyList: []
-  pnj: 0
+  pnj: {fileID: 0}
   pnjSprite: {fileID: 0}
   type: 0
-  allShopType:
-  - {fileID: 11400000, guid: b0e6aec6453439c4aa7fe3ab6f42f10e, type: 2}
-  - {fileID: 11400000, guid: 2d50fc89fedfa7c4ba6c9067be935171, type: 2}
-  - {fileID: 11400000, guid: 0069ff874b5a21443a86d816d3bec80a, type: 2}
-  - {fileID: 11400000, guid: 29e00a770fe9b274592c9b8e169645ca, type: 2}
-  - {fileID: 11400000, guid: a50f410d0dae0b9478fc8289be331725, type: 2}
-  - {fileID: 11400000, guid: 42770fd3e9ed66f4fb530720ebae38d2, type: 2}
-  - {fileID: 11400000, guid: 7bc394d58a58f1942a4c5207f382382d, type: 2}
 --- !u!114 &712904062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1382,6 +1477,14 @@ MonoBehaviour:
   - roomNb: 1
     possibleRooms:
     - {fileID: 11400000, guid: 45779200cea39f941bcf69e507ce9d47, type: 2}
+  allShopType:
+  - {fileID: 11400000, guid: b0e6aec6453439c4aa7fe3ab6f42f10e, type: 2}
+  - {fileID: 11400000, guid: 2d50fc89fedfa7c4ba6c9067be935171, type: 2}
+  - {fileID: 11400000, guid: 0069ff874b5a21443a86d816d3bec80a, type: 2}
+  - {fileID: 11400000, guid: 29e00a770fe9b274592c9b8e169645ca, type: 2}
+  - {fileID: 11400000, guid: a50f410d0dae0b9478fc8289be331725, type: 2}
+  - {fileID: 11400000, guid: 42770fd3e9ed66f4fb530720ebae38d2, type: 2}
+  - {fileID: 11400000, guid: 7bc394d58a58f1942a4c5207f382382d, type: 2}
 --- !u!1 &749503184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5278119988334306357, guid: d1d8028f033cdbe42872fba8fa86c3d9,

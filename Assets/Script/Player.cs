@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] int baseDamage;
     public static int damage;
     //public int coins;
+    [SerializeField] float baseCritMultiplier;
+    public static float critMultiplier;
+    [SerializeField] float baseCritRate;
     public static float critRate = 0;
     public static float paryBonus = 0;
     public static float doorTimeBonus = 0;
@@ -40,7 +43,8 @@ public class Player : MonoBehaviour
         maxhealth = baseHealth;
         damage = baseDamage;
 
-        critRate = 0;
+        critRate = baseCritRate;
+        critMultiplier = baseCritMultiplier;
         paryBonus = 0;
         doorTimeBonus = 0;
     }

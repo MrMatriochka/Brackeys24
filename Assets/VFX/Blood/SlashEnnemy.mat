@@ -72,7 +72,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scroll: 1
+    - _Scroll: -1
     - _SrcBlend: 5
     - _Surface: 1
     - _UV_Scroll_W: 0

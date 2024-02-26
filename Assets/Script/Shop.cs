@@ -14,21 +14,10 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        InitShopType();
+        shopType = room.pnj;
         DisplayShop();
     }
 
-    void InitShopType()
-    {
-        foreach (PnjShop shop in allShopType)
-        {
-            if(shop.type == room.pnj)
-            {
-                shopType = shop;
-                return;
-            }
-        }
-    }
     void DisplayShop()
     {
         foreach (GameObject item in ItemSlot)

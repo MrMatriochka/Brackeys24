@@ -7,7 +7,7 @@ public class RoomSetUp : MonoBehaviour
     [HideInInspector] public RoomStats room;
     [HideInInspector] public RoomSpaces[] roomSpaceList;
     [HideInInspector]public List<EnnemiesStats> ennemyList;
-    [HideInInspector] public RoomStats.Pnj pnj;
+    [HideInInspector] public PnjShop pnj;
     [HideInInspector] public Sprite pnjSprite;
     [HideInInspector] public RoomStats.RoomType type;
 
@@ -25,12 +25,14 @@ public class RoomSetUp : MonoBehaviour
 
     void RoomInit()
     {
-        pnj = room.pnjType[Random.Range(0, room.pnjType.Length)];
-        if(WorldGeneration.pnjStatus[pnj] == false)
+        if(room.pnjType.Length != 0)
         {
-            pnj = RoomStats.Pnj.None;
+            pnj = room.pnjType[Random.Range(0, room.pnjType.Length)];
+            if (WorldGeneration.pnjStatus[pnj] == false)
+            {
+                pnj = null;
+            }
         }
-
 
         type = room.type;
         //room slots
@@ -44,10 +46,10 @@ public class RoomSetUp : MonoBehaviour
             //ennemy list
             ennemyList.Add(room.possibleEnnemies[Random.Range(0, room.possibleEnnemies.Length)]);
         }
-        if(pnj != RoomStats.Pnj.None)
+        if(pnj != null)
         {
             roomSpaceList[room.roomSpace - 1] = RoomSpaces.PNJ;
-            GetPnjSprite();
+            pnjSprite = pnj.sprite;
         }
         ShuffleSlot(roomSpaceList);
     }
@@ -59,19 +61,6 @@ public class RoomSetUp : MonoBehaviour
             int r = Random.Range(t, roomSpaceList.Length);
             roomSpaceList[t] = roomSpaceList[r];
             roomSpaceList[r] = tmp;
-        }
-    }
-
-    [SerializeField] PnjShop[] allShopType;
-    void GetPnjSprite()
-    {
-        foreach (PnjShop shop in allShopType)
-        {
-            if (shop.type == pnj)
-            {
-                pnjSprite = shop.sprite;
-                return;
-            }
         }
     }
 }

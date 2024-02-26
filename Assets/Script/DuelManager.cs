@@ -261,7 +261,9 @@ public class DuelManager : MonoBehaviour
         {
             if (currentState == EnnemyMoves.Open)
             {
-                ennemyHealth -= Player.damage;
+                int damage = Player.damage;
+                if (Random.Range(0, 1) <= Player.critRate) damage = Mathf.RoundToInt(Player.critMultiplier * damage);
+                ennemyHealth -= damage;
                 audioSource.PlayOneShot(swordHit);
                 StartCoroutine(Blood(bloodMatEnemy));
             }
@@ -337,7 +339,7 @@ public class DuelManager : MonoBehaviour
     public GameObject shop;
     void CombatOver()
     {
-        if(room.pnj != RoomStats.Pnj.None)
+        if(room.pnj != null)
         {
             shop.SetActive(true);
         }

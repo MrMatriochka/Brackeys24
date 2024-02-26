@@ -12,21 +12,11 @@ public class RoomStats : ScriptableObject
     public Vector2Int ennemyNb;
 	public EnnemiesStats[] possibleEnnemies;
 
-	public Pnj[] pnjType;
+	public PnjShop[] pnjType;
 	public GameObject decor;
-	public enum Pnj
-	{
-		None,
-		Marchand,
-		Shamisen,
-		Apothicaire,
-		Forgeron,
-		Moine,
-		Autel,
-		Papi
-	}
+    
 
-	public enum RoomType
+    public enum RoomType
     {
 		Default,
 		Onsen,

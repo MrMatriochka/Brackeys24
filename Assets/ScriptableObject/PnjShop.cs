@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New shop", menuName = "Shop")]
 public class PnjShop : ScriptableObject
 {
-    public RoomStats.Pnj type;
+    public string pnjName;
     public Sprite sprite;
     public Upgrades[] itemList;
 }

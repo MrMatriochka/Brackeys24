@@ -7,7 +7,7 @@ public class WorldGeneration : MonoBehaviour
     public static WorldGeneration instance;
     public static RoomStats[] roomList;
     public static int playerProgression=0;
-    public static Dictionary<RoomStats.Pnj,bool> pnjStatus = new Dictionary<RoomStats.Pnj, bool>();
+    public static Dictionary<PnjShop,bool> pnjStatus = new Dictionary<PnjShop, bool>();
     [System.Serializable]
     public struct ZoneComposition
     {
@@ -15,6 +15,7 @@ public class WorldGeneration : MonoBehaviour
         public RoomStats[] possibleRooms;
     }
     [SerializeField] ZoneComposition[] zoneCompo;
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -53,14 +54,14 @@ public class WorldGeneration : MonoBehaviour
         }
     }
 
+    [SerializeField] PnjShop[] allShopType;
     void InitPnjStatus()
     {
         if(pnjStatus.Count != 0) pnjStatus.Clear();
 
-        int pnjTypes = System.Enum.GetValues(typeof(RoomStats.Pnj)).Length;
-        for (int i = 0; i < pnjTypes; i++)
+        foreach (PnjShop pnj in allShopType)
         {
-            pnjStatus.Add((RoomStats.Pnj)i, true );
+            pnjStatus.Add(pnj, true);
         }
     }
 }
