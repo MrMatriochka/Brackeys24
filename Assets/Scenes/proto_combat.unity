@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transi: {fileID: 1854632542}
+  menuMusic: {fileID: 8300000, guid: c45bb038e9a18c04794b94c03ba1436c, type: 3}
 --- !u!114 &54380488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,6 +1446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCompo:
+  - roomNb: 1
+    possibleRooms:
+    - {fileID: 11400000, guid: 4159ea36444e77b458dd04af41c840db, type: 2}
   - roomNb: 2
     possibleRooms:
     - {fileID: 11400000, guid: 0c01671a0d4aa1147937331439a18e96, type: 2}
@@ -3067,6 +3071,7 @@ MonoBehaviour:
   transiOver: 0
   openDoor: {fileID: 8300000, guid: 9dead087afbf11d408ecb4cf5849b34d, type: 3}
   slash: {fileID: 8300000, guid: dc0bdcb12bdcd1245871727750507ba9, type: 3}
+  doorMusic: {fileID: 8300000, guid: d1f6035f06133fb4d93bddf8a6699cb3, type: 3}
 --- !u!4 &2071692761
 Transform:
   m_ObjectHideFlags: 0
@@ -3758,6 +3763,11 @@ PrefabInstance:
       propertyPath: whiteFlash
       value: 
       objectReference: {fileID: 1951610676}
+    - target: {fileID: 4054246810163621255, guid: 514bddca05a1e174a9537dc27456e66d,
+        type: 3}
+      propertyPath: gameOverMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: b7c6b1e299f9ef94496542119f90f083, type: 3}
     - target: {fileID: 4054246810163621255, guid: 514bddca05a1e174a9537dc27456e66d,
         type: 3}
       propertyPath: playerHealthUILeft

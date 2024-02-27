@@ -41,9 +41,15 @@ public class DoorManager : MonoBehaviour
     bool actionChose;
     [HideInInspector] public bool transiOver;
     [SerializeField] AudioClip openDoor;
-
+    [SerializeField] AudioClip slash;
+    [Header("Music")]
+    [SerializeField] AudioClip doorMusic;
+    MusicManager music;
+    
     void Start()
     {
+        music = FindAnyObjectByType<MusicManager>();
+        music.ChangeClip(doorMusic);
         timer += Player.doorTimeBonus;
         timerSlider.value = timer;
         timerSlider.maxValue = timer;
@@ -156,7 +162,7 @@ public class DoorManager : MonoBehaviour
         fightScene.SetActive(true);
         yield return null;
     }
-    [SerializeField] AudioClip slash;
+    
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && !actionChose)

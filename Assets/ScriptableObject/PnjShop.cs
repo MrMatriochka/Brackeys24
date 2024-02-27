@@ -7,5 +7,11 @@ public class PnjShop : ScriptableObject
 {
     public string pnjName;
     public Sprite sprite;
+
+    [Header("Shop")]
     public Upgrades[] itemList;
+    public AudioClip music;
+
+    [Header("Door")]
+    public AudioClip[] sfx;
 }

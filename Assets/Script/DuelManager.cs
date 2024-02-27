@@ -93,6 +93,7 @@ public class DuelManager : MonoBehaviour
     }
 
     [SerializeField] GameObject gameOver;
+    [SerializeField] AudioClip gameOverMusic;
     private void Update()
     {
         if(ennemyHealth <= 0 && !ennemyDead)
@@ -112,8 +113,9 @@ public class DuelManager : MonoBehaviour
             }
         }
 
-        if (Player.health <= 0 && !ennemyDead)
+        if (Player.health <= 0)
         {
+            FindAnyObjectByType<MusicManager>().ChangeClip(gameOverMusic);
             player.SetActive(false);
             StopAllCoroutines();
             StartCoroutine(Blood(bloodMatPlayer));

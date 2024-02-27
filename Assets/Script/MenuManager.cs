@@ -15,8 +15,10 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+   [SerializeField] AudioClip menuMusic;
     public void GoToMenu()
     {
         transi.Out(0);
+        FindAnyObjectByType<MusicManager>().ChangeClip(menuMusic);
     }
 }

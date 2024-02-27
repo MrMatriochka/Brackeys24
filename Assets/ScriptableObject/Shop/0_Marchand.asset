@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f35417319738f4185cf743cee92a29, type: 3}
   m_Name: 0_Marchand
   m_EditorClassIdentifier: 
-  type: 1
+  pnjName: Marchand
   sprite: {fileID: 21300000, guid: f3afa2873756e2847b1674eff3923246, type: 3}
   itemList:
   - {fileID: 11400000, guid: 5901421e9bcea30468d55190f2787a48, type: 2}
@@ -22,3 +22,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92ffe7bad517c1844bcd3d588767eebd, type: 2}
   - {fileID: 11400000, guid: 8685d471cd99e4e429aca12addda2d61, type: 2}
   - {fileID: 11400000, guid: 6b17e0437e9cb4844bea842037481c92, type: 2}
+  music: {fileID: 8300000, guid: 000e0b613c6fbbb45a8c4c8771f209dd, type: 3}
+  sfx: []

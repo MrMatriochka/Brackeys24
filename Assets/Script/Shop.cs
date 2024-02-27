@@ -11,10 +11,12 @@ public class Shop : MonoBehaviour
     public RoomSetUp room;
     [SerializeField] GameObject[] ItemSlot;
     [SerializeField] Image pnjImage;
-
+    MusicManager music;
     void Start()
     {
         shopType = room.pnj;
+        music = FindAnyObjectByType<MusicManager>();
+        music.ChangeClip(shopType.music);
         DisplayShop();
     }
 

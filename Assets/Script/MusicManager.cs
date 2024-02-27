@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class MusicManager : MonoBehaviour
 {
     void Awake()
     {
+        musicPlaying = aS1.clip;
         if (FindObjectsOfType<MusicManager>().Length > 1)
         {
             Destroy(gameObject);
@@ -17,20 +19,14 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public AudioSource aS1, aS2;
     public float transiTime;
     public float defaultVolume;
-
-    public void ChangeClip()
+    AudioClip musicPlaying;
+    public void ChangeClip(AudioClip newMusic)
     {
+        if (newMusic == musicPlaying) return;
+
         AudioSource nowPlaying = aS1;
         AudioSource target = aS2;
 
@@ -41,10 +37,11 @@ public class MusicManager : MonoBehaviour
         }
 
         StopAllCoroutines();
-        StartCoroutine(MixSources(nowPlaying,target));
+        StartCoroutine(MixSources(nowPlaying,target, newMusic));
+        musicPlaying = newMusic;
     }
 
-    IEnumerator MixSources(AudioSource nowPlaying, AudioSource target)
+    IEnumerator MixSources(AudioSource nowPlaying, AudioSource target,AudioClip newMusic)
     {
         float percentage = 0;
         while (nowPlaying.volume >0)
@@ -55,6 +52,7 @@ public class MusicManager : MonoBehaviour
         }
 
         nowPlaying.Pause();
+        target.clip = newMusic;
         if (target.isPlaying == false) target.Play();
         target.UnPause();
         percentage = 0;
